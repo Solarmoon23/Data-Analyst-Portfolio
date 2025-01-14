@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Shrestha-Greene - Data Analyst Portfolio</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background: #444;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Project Cards */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            position: relative;
+            width: 200px;
+            height: 250px;
+            background-color: #333;
+            color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .card .details {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover .details {
+            transform: translateY(0);
+        }
+
+        .details h3 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .details p {
+            margin: 5px 0 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Solar Shrestha-Greene</h1>
+        <p>Data Analyst Portfolio</p>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#experience">Experience</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <p>
+            Motivated data analytics graduate student with a solid foundation in data visualization, business analysis, and
+            reporting. Skilled in Power BI, Tableau, and Microsoft Excel, with experience in leveraging data to uncover
+            insights and support decision-making. Seeking an internship to apply academic knowledge to real-world business
+            challenges.
+        </p>
+    </section>
+	 <section id="education" class="container">
+
+        <h2>Education</h2>
+
+        <p><strong>Master's of Science: Data Analyst/ Data Science Major</strong><br>Southern New Hampshire University</p>
+
+        <p><strong>Bachelor's of Science: Business Management/ Management Information Systems Major</strong><br>Southern New Hampshire University</p>
+
+    </section>
+
+	<section id="experience" class="container">
+
+        <h2>Work Experience</h2>
+
+        <p><strong>Service Delivery Team Lead</strong><br>TTEC (09/2019 - 09/2021, Remote)</p>
+
+        <ul>
+
+            <li>Analyzed and presented operational metrics to improve efficiency.</li>
+
+            <li>Created performance dashboards to visualize agent productivity using Tableau.</li>
+
+            <li>Collaborated with teams to enhance quality processes, improving effectiveness by 15%.</li>
+
+        </ul>
+
+        <p><strong>New Hire Trainer</strong><br>TTEC (09/2021 - 10/2024, Morgantown, WV)</p>
+
+        <ul>
+
+            <li>Trained new hires on tools and processes, ensuring proficiency in client requirements.</li>
+
+            <li>Designed and implemented training dashboards to track new hire performance metrics.</li>
+
+            <li>Provided data-driven insights for process improvement and enhanced team collaboration.</li>
+
+        </ul>
+
+    </section>
+
+    <section id="skills" class="container skills">
+
+        <h2>Skills</h2>
+
+        <ul>
+
+            <li>Data Visualization (Power BI, Tableau)</li>
+
+            <li>Business Data Analysis</li>
+
+            <li>Statistical Modeling</li>
+
+            <li>MS Power Suite (Excel, PowerPoint)</li>
+
+            <li>SQL</li>
+
+            <li>Predictive Modeling</li>
+
+            <li>Problem Solving</li>
+
+        </ul>
+
+    </section>
+
+    <section id="projects" class="container">
+        <h2>Key Projects</h2>
+        <div class="card-container">
+            <div class="card">
+                <img src="C:\Users\solar\OneDrive\Desktop\pic6.png" alt="Credit Risk Project">
+                <div class="details">
+                    <h3>Credit Risk Project</h3>
+                    <p>Determine credit risk based on applicant's info.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="C:\Users\solar\OneDrive\Desktop\pic2.png" alt="Facebook Data Analysis">
+                <div class="details">
+                    <h3>Facebook Data Analysis</h3>
+                    <p>Analyze user data trends using R.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="C:\Users\solar\OneDrive\Desktop\pic5.png" alt="Predictive Modeling">
+                <div class="details">
+                    <h3>Predictive Modeling</h3>
+                    <p>Forecast outcomes with advanced modeling techniques.</p>
+                </div>
+            
+          
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:solarshrestha@live.com">solarshrestha@live.com</a></p>
+        <p>Phone: 304-319-0236</p>
+        <p>Address: 511 E Street, Mountain Lake Park, MD, United States</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/solarshrestha" target="_blank">www.linkedin.com/in/solarshrestha</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Solar Shrestha-Greene</p>
+    </footer>
+</body>
+
+</html>
