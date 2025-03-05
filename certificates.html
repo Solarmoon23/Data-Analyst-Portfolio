@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificates</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .certificate {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .certificate:hover {
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>My Certificates</h2>
+
+    <div class="container">
+        <img src="Certificates1.png" alt="Certificate 1" class="certificate">
+        <img src="Certificates2.png" alt="Certificate 2" class="certificate">
+        <img src="Certificates3.png" alt="Certificate 3" class="certificate">
+        <!-- Add more certificate images as needed -->
+    </div>
+
+    <a href="index.html" class="back-button">Back to Portfolio</a>
+
+</body>
+</html>
