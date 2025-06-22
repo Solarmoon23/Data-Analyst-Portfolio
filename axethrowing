@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Looping Video</title>
+</head>
+<body style="margin:0; background:#000; display:flex; justify-content:center; align-items:center; height:100vh;">
+
+  <video width="800" autoplay muted loop controls>
+    <source src="Axe-Throwing-Safety-Rules.mov" type="video/quicktime">
+    Your browser does not support the video tag.
+  </video>
+
+</body>
+</html>
