@@ -2,7 +2,7 @@
 
 A browser-based dashboard that consolidates vacation-rental bookings from multiple channels into a single view, built for **Pine & Paw Lodge** (luxury cabin, Deep Creek Lake, MD) and adapted for **Wild Yough Glamping** (5-hut glampground, Oakland, MD).
 
-![Dashboard screenshot](screenshots/dashboard.png)
+ ![App screenshot](pine-dash.png)
 <!-- Add a screenshot using sample/fake guest data only -->
 
 ## The problem
