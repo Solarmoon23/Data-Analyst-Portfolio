@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCLC Vehicle &amp; Expense Log | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #333; color: #fff; padding: 20px; text-align: center; }
+  header h1 { margin: 0; font-size: 28px; }
+  header p { margin: 6px 0 0; color: #ccc; }
+  nav { background: #444; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 900px; margin: auto; padding: 20px; }
+  .hero { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); display: block; background: #333; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  h2 { border-bottom: 2px solid #6b9f89; padding-bottom: 4px; margin-top: 32px; }
+  pre { background: #222; color: #e6e6e6; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+  .note { background: #fff8e1; border-left: 4px solid #f4a261; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #6b9f89; color: #fff; padding: 10px 18px; border-radius: 6px; text-decoration: none; }
+  footer { background: #333; color: #fff; text-align: center; padding: 10px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<header><h1>DCLC Vehicle &amp; Expense Log</h1><p>Trip, fuel and meal tracking for Deep Creek Lake Concierge</p></header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <img class="hero" src="log-form.png" alt="DCLC Vehicle &amp; Expense Log screenshot" onerror="this.onerror=null;this.src='../log-form.png'">
+  <p class="tags" style="margin-top:16px"><span>HTML</span><span>JavaScript</span><span>Google Apps Script</span><span>Google Sheets</span><span>Netlify</span></p>
+  <h2>The problem</h2>
+  <p>Mileage, fuel and meal receipts were tracked inconsistently, which made tax-time deductions and job costing slow and error-prone.</p>
+  <h2>How it works</h2>
+<pre>Phone browser (HTML form on Netlify)
+        |  POST
+        v
+Google Apps Script web app
+        |
+        v
+Google Sheet  -&gt;  summaries / charts</pre>
+  <ul>
+    <li><strong>Front end:</strong> a static HTML/CSS/JavaScript form hosted on Netlify, built for phones.</li>
+    <li><strong>Back end:</strong> a Google Apps Script web app receives each entry and appends a row.</li>
+    <li><strong>Data store:</strong> a Google Sheet with one row per trip or expense, ready for pivot tables and reporting.</li>
+  </ul>
+  <h2>Features</h2>
+  <ul>
+    <li>Log trips (purpose, miles), fuel purchases and meals.</li>
+    <li>Timestamped, structured records for filtering by date, category or job.</li>
+    <li>No server or database costs.</li>
+  </ul>
+  <h2>Skills demonstrated</h2>
+  <ul>
+    <li>Data collection design: clean, consistent input produces clean data</li>
+    <li>Apps Script automation and API-style integration</li>
+    <li>Spreadsheet data modeling and reporting</li>
+  </ul>
+  <p class="note">The live app writes to a private business sheet, so it is not linked here.</p>
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer><p>&copy; 2026 Solar Shrestha-Greene</p></footer>
+</body>
+</html>
+where
