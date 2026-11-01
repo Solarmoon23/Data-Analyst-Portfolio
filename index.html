@@ -8,7 +8,6 @@
 	
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-</head>
     <style>
         /* General Styles */
         body {
@@ -173,11 +172,14 @@
             list-style-type: square;
             padding-left: 20px;
         }
-    .card { width: 220px; height: auto; min-height: 160px; overflow: hidden; }
-.card img { width: 100%; height: 120px; object-fit: cover; display: block; }
-.card .details { position: static !important; opacity: 1 !important; visibility: visible !important; transform: none !important; display: block !important; padding: 12px; color: #fff; }
-.card .details h3 { font-size: 15px; margin: 0 0 6px; }
-.card .details p { font-size: 13px; margin: 0; line-height: 1.4; }
+        /* Card layout overrides: text always visible, equal heights */
+        .card-container { align-items: stretch; }
+        .card-container > a { display: flex; text-decoration: none; color: inherit; }
+        .card { width: 220px; height: auto; display: flex; flex-direction: column; overflow: hidden; }
+        .card img { width: 100%; height: 120px; object-fit: cover; display: block; opacity: 1; }
+        .card .details { position: static; transform: none; box-sizing: border-box; width: 100%; flex: 1; padding: 12px; background: #111; color: #fff; }
+        .card .details h3 { font-size: 15px; margin: 0 0 6px; }
+        .card .details p { font-size: 13px; margin: 0; line-height: 1.4; }
 	</style>
 </head>
 
@@ -278,8 +280,7 @@
 
 	
 
-    <section id="contact" class="container">
-	 <section id="skills" class="container skills">
+    <section id="skills" class="container skills">
         <h2>Skills</h2>
         <ul>
             <li>Data Visualization (Power BI, Tableau)</li>
@@ -312,9 +313,9 @@
                 <div class="details">
                     <h3>Credit Risk Analysis</h3>
                     <p>Determine Credit Worthiness based on Client's Demographics</p>
-                
-                    </div>
+                </div>
             </div>
+        </a>
 
             <!-- AirBnb Project (Now Clickable) -->
             <a href="AirBnb.png" target="_blank"> 
@@ -325,9 +326,12 @@
                         <p> AirBnb's Sales & Marketing</p>
                     </div>
                 </div>
-            </a>            <!-- Reservation Dashboard -->
+            </a>
+
+            <!-- Reservation Dashboard -->
             <a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/tree/main1/reservation-dashboard" target="_blank">
                 <div class="card">
+                    <img src="Pic10.png" alt="Reservation Dashboard">
                     <div class="details">
                         <h3>Reservation Management Dashboard</h3>
                         <p>Merges live iCal feeds from Airbnb, Booking.com, Hipcamp and direct bookings into one occupancy and reservation view. HTML · JavaScript · iCal</p>
@@ -338,6 +342,7 @@
             <!-- WYG Booking Site -->
             <a href="https://dclconcierge.com/wyg" target="_blank">
                 <div class="card">
+                    <img src="Pic11.png" alt="Glamping Booking Portal">
                     <div class="details">
                         <h3>Wild Yough Glamping Booking &amp; Guest Portal</h3>
                         <p>Direct-booking site with a night-by-night pricing and tax quote engine, plus a guest dashboard for reservations, changes and add-ons. JavaScript · WordPress</p>
@@ -348,6 +353,7 @@
             <!-- Vehicle Expense Log -->
             <a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/tree/main1/vehicle-expense-log" target="_blank">
                 <div class="card">
+                    <img src="Pic12.png" alt="Vehicle Expense Log">
                     <div class="details">
                         <h3>DCLC Vehicle &amp; Expense Log</h3>
                         <p>Mobile trip, fuel and meal logger that saves each entry to a Google Sheet through Apps Script for expense reporting. Apps Script · Google Sheets</p>
@@ -358,18 +364,17 @@
             <!-- DCLC Website -->
             <a href="https://dclconcierge.com" target="_blank">
                 <div class="card">
+                    <img src="Pic13.png" alt="DCLC Website">
                     <div class="details">
                         <h3>Deep Creek Lake Concierge Website</h3>
                         <p>Company site with an interactive service catalog, tiered pricing and a lead-capture quote form. WordPress · HTML · CSS</p>
                     </div>
                 </div>
             </a>
-        
+        </div>
+    </section>
 
-	</section>
 
-
-    <section>
     <section id="certificates" class="container">
         <h2>Certificates</h2>
         
@@ -385,9 +390,8 @@
         </a>
 
     </section>
-</section>
 
-
+    <section id="contact" class="container">
         <h2>Contact</h2>
         <p>Email: <a href="mailto:solarshrestha@live.com">solarshrestha@live.com</a></p>
         <p>Phone: 304-319-0236</p>
@@ -404,7 +408,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         // Initialize the map
-        var map = L.map('map').setView([39.6295, -799559], 13); // Adjusted center for better view
+        var map = L.map('map').setView([39.6295, -79.9559], 13); // Adjusted center for better view
 
         // Load map tiles
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -421,7 +425,7 @@
 
 
     <footer>
-        <p>&copy; 2024 Solar Shrestha-Greene</p>
+        <p>&copy; 2026 Solar Shrestha-Greene</p>
     </footer>
 </body>
 </html>
