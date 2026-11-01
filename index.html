@@ -1,431 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Shrestha-Greene - Data Analyst Portfolio</title>
-	
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            line-height: 1.6;
-        }
-
-        header {
-            background: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav {
-            background: #444;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        section {
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 0 20px;
-            text-align: left;
-        }
-
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-
-        /* Project Cards */
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: flex-start;
-        }
-
-        .card {
-            position: relative;
-            width: 150px;
-            height: 160px;
-            background-color: #333;
-            color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-        }
-
-        .card .details {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover .details {
-            transform: translateY(0);
-        }
-
-        .details h3 {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .details p {
-            margin: 5px 0 0;
-            font-size: 9px;
-        }
-
-        /* Employment Timeline */
-        .timeline {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            margin: 50px auto;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: black;
-            top: 50%;
-            left: 0;
-            z-index: -1;
-        }
-
-        .event {
-            position: relative;
-            text-align: left;
-            width: 23%;
-        }
-
-        .event .dot {
-            width: 12px;
-            height: 12px;
-            background-color: #6b9f89;
-            border-radius: 50%;
-            display: inline-block;
-            position: relative;
-            top: -5px;
-        }
-
-        .event h3 {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-
-        .event p {
-            font-size: 12px;
-            font-style: italic;
-            color: gray;
-        }
-
-        /* Skills List */
-        .skills ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-        /* Card layout overrides: text always visible, equal heights */
-        .card-container { align-items: stretch; }
-        .card-container > a { display: flex; text-decoration: none; color: inherit; }
-        .card { width: 220px; height: auto; display: flex; flex-direction: column; overflow: hidden; }
-        .card img { width: 100%; height: 120px; object-fit: cover; display: block; opacity: 1; }
-        .card .details { position: static; transform: none; box-sizing: border-box; width: 100%; flex: 1; padding: 12px; background: #111; color: #fff; }
-        .card .details h3 { font-size: 15px; margin: 0 0 6px; }
-        .card .details p { font-size: 13px; margin: 0; line-height: 1.4; }
-	</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCLC Vehicle &amp; Expense Log | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #333; color: #fff; padding: 20px; text-align: center; }
+  header h1 { margin: 0; font-size: 28px; }
+  header p { margin: 6px 0 0; color: #ccc; }
+  nav { background: #444; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 900px; margin: auto; padding: 20px; }
+  .hero { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); display: block; background: #333; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  h2 { border-bottom: 2px solid #6b9f89; padding-bottom: 4px; margin-top: 32px; }
+  pre { background: #222; color: #e6e6e6; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+  .note { background: #fff8e1; border-left: 4px solid #f4a261; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #6b9f89; color: #fff; padding: 10px 18px; border-radius: 6px; text-decoration: none; }
+  footer { background: #333; color: #fff; text-align: center; padding: 10px; margin-top: 40px; }
+</style>
 </head>
-
 <body>
-    <header>
-        <h1>Solar Shrestha-Greene</h1>
-        <p>Data Analyst Portfolio</p>
-    </header>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-	<a href="#certificates">Certificates</a>
-    </nav>
-
-    <section id="about" class="container">
- <br>
-      
-        <h2>About Me</h2>
-        <p>
-             👋Hi! I'm a motivated data analytics graduate student with a solid foundation in data visualization, business analysis, and
-            reporting. Skilled in MySQL, Python, R Studio, Power BI, Tableau, and Microsoft Excel, with experience in leveraging data to uncover
-            insights and support decision-making. I am currently seeking an internship to apply academic knowledge to real-world business challenges.❤️
-        </p>
-    </section>
-
-    <section id="education" class="container">
-        <h2>Education</h2>
-        <p><strong>Master's of Science: Data Analytics<br> Major: Data Science</strong><br>Southern New Hampshire University</p>
-        <p><strong>Bachelor's of Science: Business Management <br> Major:Information Systems</strong><br>Southern New Hampshire University</p>
-    </section>
-
-    <section id="experience" class="container">
-        <h2>Work Experience</h2>
-        <p><strong>Data Analyst Intern/Billing</strong><br>Deep Creek Concierge (06/2023-Present, Oakland, MD)</p>
-	    <ul>
-            <li>Identify patterns in revenue, payments, and customer billing behaviors.</li>
-            <li>Compare payments received with invoices issued.</li>
-            <li>Update billing records and assist in account adjustments.</li>
-	    <li>Assist in generating, verifying, and sending invoices to customers.</li>
-	    <li>Develop scripts (Excel, SQL) to streamline data entry or report generation.</li>
-           </ul>
-
-	   
-	    <p><strong>New Hire Trainer</strong><br>TTEC (09/2021 - 10/2024, Morgantown, WV)</p>
-	    <ul>
-            <li>Trained new hires on tools and processes, ensuring proficiency in client requirements.</li>
-            <li>Designed and implemented training dashboards to track new hire performance metrics.</li>
-            <li>Provided data-driven insights for process improvement and enhanced team collaboration.</li>
-            </ul>
-
-         <p><strong>Service Delivery Team Lead</strong><br>TTEC (09/2019 - 09/2021, Remote)</p>
-        <ul>
-            <li>Analyzed and presented operational metrics to improve efficiency.</li>
-            <li>Created performance dashboards to visualize agent productivity using Tableau.</li>
-            <li>Collaborated with teams to enhance quality processes, improving effectiveness by 15%.</li>
-        </ul>
-    </section>
-
-    <section id="employment-timeline" class="container">
-  <div class="row hide-if-small-screen" style="padding-top: 5%;">
-    <div class="col-lg-12 text-center">
-        <svg width="100%" height="120" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMid meet">
-            <!-- Horizontal Line -->
-            <line x1="50" y1="50" x2="950" y2="50" style="stroke:black; stroke-width:1.5" />
-
-            <!-- Timeline Events -->
-            <!-- 2011: Senior Client Advocate -->
-            <circle cx="220" cy="50" r="10" stroke="#f8f9fa" stroke-width="6" fill="#69b3a2" />
-            <text text-anchor="middle" x="220" y="80" fill="black">2011</text>
-            <text font-size="13" text-anchor="middle" x="220" y="25" fill="black">Senior Client Advocate</text>
-            <text font-size="13" font-style="italic" text-anchor="middle" x="220" y="100" fill="#808080">Bank of America</text>
-
-            <!-- 2019: Service Team Manager -->
-            <circle cx="450" cy="50" r="10" stroke="#f8f9fa" stroke-width="6" fill="#69b3a2" />
-            <text text-anchor="middle" x="450" y="80" fill="black">2019</text>
-            <text font-size="13" text-anchor="middle" x="450" y="25" fill="black">Service Team Manager</text>
-            <text font-size="13" font-style="italic" text-anchor="middle" x="450" y="100" fill="#808080">Bank of America</text>
-
-            <!-- 2021: Training Specialist -->
-            <circle cx="650" cy="50" r="10" stroke="#f8f9fa" stroke-width="6" fill="#69b3a2" />
-            <text text-anchor="middle" x="650" y="80" fill="black">2021</text>
-            <text font-size="13" text-anchor="middle" x="650" y="25" fill="black">Training Specialist</text>
-            <text font-size="13" font-style="italic" text-anchor="middle" x="650" y="100" fill="#808080">Bank of America</text>
-
-            <!-- 2024: Data Analyst Intern/Billing -->
-            <circle cx="850" cy="50" r="10" stroke="#f8f9fa" stroke-width="6" fill="#69b3a2" />
-            <text text-anchor="middle" x="850" y="80" fill="black">2024</text>
-            <text font-size="13" text-anchor="middle" x="850" y="25" fill="black">Data Analyst Intern/Billing</text>
-            <text font-size="13" font-style="italic" text-anchor="middle" x="850" y="100" fill="#808080">Deep Creek Concierge</text>
-        </svg>
-    </div>
-</div>
-    </section>
-
-	
-
-    <section id="skills" class="container skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Data Visualization (Power BI, Tableau)</li>
-            <li>Business Data Analysis</li>
-            <li>Statistical Modeling</li>
-	    <li>MS Office 365 (Word, Outlook, Teams, and SharePoint)</li>
-            <li>MS Power Suite (Excel and PowerPoint)</li>
-            <li>Programming Languages: R Studio, MySQL,and Python</li>
-            <li>Predictive Modeling</li>
-            <li>Problem Solving</li>
-        </ul>
-    </section>
-
-    <section id="projects" class="container">
-        <h2>Key Projects</h2>
-        <div class="card-container">
-            <!-- FaceBook Project-->
-            <div class="card">
-                <img src="Pic8.png" alt="FaceBook Data Project">
-                <div class="details">
-                    <h3>Facebook Data Project</h3>
-                      <p>Analyzed Facebook engagement data to find which posts drive reach and interaction</p>
-                </div>
-            </div>
-
-               <!-- Credit Risk Project (Now Opens PDF) -->
-        <a href="Capstone.pdf" target="_blank"> 
-            <div class="card">
-                <img src="Pic9.jpg" alt="Credit Risk Analysis">
-                <div class="details">
-                    <h3>Credit Risk Analysis</h3>
-                    <p>Determine Credit Worthiness based on Client's Demographics</p>
-                </div>
-            </div>
-        </a>
-
-            <!-- AirBnb Project (Now Clickable) -->
-            <a href="AirBnb.png" target="_blank"> 
-                <div class="card">
-                    <img src="AirBnb%20Tableau%20project%20screenshot.png" alt="AirBnb Project">
-                    <div class="details">
-                        <h3>Tableau AirBnb Dashboard Project</h3>
-                        <p> AirBnb's Sales & Marketing</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Reservation Dashboard -->
-            <a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/tree/main1/reservation-dashboard" target="_blank">
-                <div class="card">
-                    <img src="Pic10.png" alt="Reservation Dashboard">
-                    <div class="details">
-                        <h3>Reservation Management Dashboard</h3>
-                        <p>Merges live iCal feeds from Airbnb, Booking.com, Hipcamp and direct bookings into one occupancy and reservation view. HTML · JavaScript · iCal</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- WYG Booking Site -->
-            <a href="https://dclconcierge.com/wyg" target="_blank">
-                <div class="card">
-                    <img src="Pic11.png" alt="Glamping Booking Portal">
-                    <div class="details">
-                        <h3>Wild Yough Glamping Booking &amp; Guest Portal</h3>
-                        <p>Direct-booking site with a night-by-night pricing and tax quote engine, plus a guest dashboard for reservations, changes and add-ons. JavaScript · WordPress</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Vehicle Expense Log -->
-            <a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/tree/main1/vehicle-expense-log" target="_blank">
-                <div class="card">
-                    <img src="Pic12.png" alt="Vehicle Expense Log">
-                    <div class="details">
-                        <h3>DCLC Vehicle &amp; Expense Log</h3>
-                        <p>Mobile trip, fuel and meal logger that saves each entry to a Google Sheet through Apps Script for expense reporting. Apps Script · Google Sheets</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- DCLC Website -->
-            <a href="https://dclconcierge.com" target="_blank">
-                <div class="card">
-                    <img src="Pic13.png" alt="DCLC Website">
-                    <div class="details">
-                        <h3>Deep Creek Lake Concierge Website</h3>
-                        <p>Company site with an interactive service catalog, tiered pricing and a lead-capture quote form. WordPress · HTML · CSS</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </section>
-
-
-    <section id="certificates" class="container">
-        <h2>Certificates</h2>
-        
-        <!-- Clickable Card to Redirect to Certificates Page -->
-        <a href="certificates.html">
-            <div class="card">
-                <img src="Certificatelogo.png" alt="Certificates">
-                <div class="details">
-                    <h3>Data Analytics Certificates</h3>
-                    <p>Click to View Certificates</p>
-                </div>
-            </div>
-        </a>
-
-    </section>
-
-    <section id="contact" class="container">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:solarshrestha@live.com">solarshrestha@live.com</a></p>
-        <p>Phone: 304-319-0236</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/solarshrestha" target="_blank">LinkedIn Profile</a></p>
-    </section>
-
-
-<!-- Map Section -->
-<section class="container">
-    <h2>Location</h2>
-    <div id="map" style="height: 400px; width: 100%;"></div>
-</section>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Initialize the map
-        var map = L.map('map').setView([39.6295, -79.9559], 13); // Adjusted center for better view
-
-        // Load map tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 18
-        }).addTo(map);
-
-        // Add a marker
-        L.marker([39.6295, -79.9559]).addTo(map)
-            .bindPopup('<b>My Location</b><br>West Virginia, USA')
-            .openPopup();
-    });
-</script>
-
-
-    <footer>
-        <p>&copy; 2026 Solar Shrestha-Greene</p>
-    </footer>
+<header><h1>DCLC Vehicle &amp; Expense Log</h1><p>Trip, fuel and meal tracking for Deep Creek Lake Concierge</p></header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <img class="hero" src="log-form.png" alt="DCLC Vehicle &amp; Expense Log screenshot" onerror="this.onerror=null;this.src='../log-form.png'">
+  <p class="tags" style="margin-top:16px"><span>HTML</span><span>JavaScript</span><span>Google Apps Script</span><span>Google Sheets</span><span>Netlify</span></p>
+  <h2>The problem</h2>
+  <p>Mileage, fuel and meal receipts were tracked inconsistently, which made tax-time deductions and job costing slow and error-prone.</p>
+  <h2>How it works</h2>
+<pre>Phone browser (HTML form on Netlify)
+        |  POST
+        v
+Google Apps Script web app
+        |
+        v
+Google Sheet  -&gt;  summaries / charts</pre>
+  <ul>
+    <li><strong>Front end:</strong> a static HTML/CSS/JavaScript form hosted on Netlify, built for phones.</li>
+    <li><strong>Back end:</strong> a Google Apps Script web app receives each entry and appends a row.</li>
+    <li><strong>Data store:</strong> a Google Sheet with one row per trip or expense, ready for pivot tables and reporting.</li>
+  </ul>
+  <h2>Features</h2>
+  <ul>
+    <li>Log trips (purpose, miles), fuel purchases and meals.</li>
+    <li>Timestamped, structured records for filtering by date, category or job.</li>
+    <li>No server or database costs.</li>
+  </ul>
+  <h2>Skills demonstrated</h2>
+  <ul>
+    <li>Data collection design: clean, consistent input produces clean data</li>
+    <li>Apps Script automation and API-style integration</li>
+    <li>Spreadsheet data modeling and reporting</li>
+  </ul>
+  <p class="note">The live app writes to a private business sheet, so it is not linked here.</p>
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer><p>&copy; 2026 Solar Shrestha-Greene</p></footer>
 </body>
 </html>
