@@ -1,431 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Shrestha-Greene - Data Analyst Portfolio</title>
-	
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <style>
-        /* General Styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            line-height: 1.6;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Shrestha-Greene - Data Analyst Portfolio</title>
+<meta name="description" content="Data analyst portfolio of Solar Shrestha-Greene: SQL, Python, Tableau, Power BI and real-world hospitality data tools.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<style>
+  :root {
+    --ink: #0f172a; --ink-2: #334155; --muted: #64748b;
+    --bg: #f6f7fb; --card: #ffffff; --line: #e5e7eb;
+    --accent: #f08a3c; --accent-2: #2a9d8f; --hero: #0b1324;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { margin: 0; font-family: Inter, Arial, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.65; }
+  h1, h2, h3 { font-family: "Space Grotesk", Arial, sans-serif; line-height: 1.2; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-        header {
-            background: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(11,19,36,.92); backdrop-filter: blur(8px); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { color: #fff; font-family: "Space Grotesk", sans-serif; font-weight: 700; text-decoration: none; letter-spacing: .3px; }
+  .brand span { color: var(--accent); }
+  .links { display: flex; gap: 4px; }
+  .links a { color: #cbd5e1; text-decoration: none; font-size: 14px; padding: 6px 10px; border-radius: 8px; transition: .2s; }
+  .links a:hover, .links a.active { color: #fff; background: rgba(255,255,255,.08); }
+  .menu-btn { display: none; background: none; border: 0; color: #fff; font-size: 24px; cursor: pointer; }
 
-        nav {
-            background: #444;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
+  /* Hero */
+  .hero { position: relative; background: var(--hero); color: #fff; overflow: hidden; }
+  #net { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .55; }
+  .hero .wrap { position: relative; padding: 90px 20px 80px; }
+  .eyebrow { display: inline-block; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(240,138,60,.4); padding: 4px 12px; border-radius: 20px; }
+  .hero h1 { font-size: clamp(36px, 6vw, 60px); margin: 18px 0 8px; }
+  .typed { font-family: "Space Grotesk", sans-serif; font-size: clamp(20px, 3vw, 28px); color: #cbd5e1; min-height: 1.4em; }
+  .typed b { color: #fff; font-weight: 500; border-right: 2px solid var(--accent); padding-right: 3px; }
+  .hero p.lead { max-width: 620px; color: #94a3b8; font-size: 17px; margin: 18px 0 30px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn { display: inline-block; padding: 12px 22px; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 15px; transition: transform .2s, background .2s; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.primary { background: var(--accent); color: #111; }
+  .btn.ghost { border: 1px solid rgba(255,255,255,.3); color: #fff; }
+  .btn.ghost:hover { background: rgba(255,255,255,.08); }
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-        }
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: -40px; position: relative; z-index: 2; }
+  .stat { background: var(--card); border-radius: var(--radius); padding: 22px; text-align: center; box-shadow: 0 10px 30px rgba(15,23,42,.08); }
+  .stat b { display: block; font-family: "Space Grotesk", sans-serif; font-size: 34px; color: var(--accent); }
+  .stat span { font-size: 14px; color: var(--muted); }
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+  /* Sections */
+  section { padding: 70px 0 10px; }
+  .sec-title { display: flex; align-items: baseline; gap: 12px; margin-bottom: 26px; }
+  .sec-title h2 { font-size: 30px; margin: 0; }
+  .sec-title .num { font-family: "Space Grotesk", sans-serif; color: var(--accent); font-size: 15px; }
+  .panel { background: var(--card); border-radius: var(--radius); padding: 26px; box-shadow: 0 4px 18px rgba(15,23,42,.05); }
+  .two { display: grid; grid-template-columns: 1.3fr 1fr; gap: 20px; }
+  .edu { display: grid; gap: 14px; }
+  .edu div { border-left: 3px solid var(--accent-2); padding: 4px 0 4px 14px; }
+  .edu strong { display: block; }
+  .edu small { color: var(--muted); font-size: 14px; }
 
-        section {
-            padding: 20px;
-        }
+  /* Timeline */
+  .timeline { position: relative; margin-left: 10px; }
+  .timeline::before { content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(var(--accent), var(--accent-2)); }
+  .job { position: relative; padding: 0 0 26px 30px; }
+  .job::before { content: ""; position: absolute; left: -6px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--card); border: 3px solid var(--accent); }
+  .job .when { font-size: 13px; font-weight: 600; color: var(--accent); }
+  .job h3 { margin: 2px 0; font-size: 19px; }
+  .job .where { color: var(--muted); font-size: 14px; }
+  .job ul { margin: 8px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 15px; }
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 0 20px;
-            text-align: left;
-        }
+  /* Career path (horizontal) */
+  .path { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); margin-bottom: 20px; padding: 30px 10px; }
+  .path::before { content: ""; position: absolute; left: 4%; right: 4%; top: 50%; height: 2px; background: linear-gradient(90deg, var(--accent-2), var(--accent)); }
+  .stop { position: relative; text-align: center; display: grid; grid-template-rows: 1fr auto 1fr; align-items: center; min-height: 130px; }
+  .stop .role { align-self: end; font-weight: 600; font-size: 14px; padding-bottom: 12px; }
+  .stop .dot { width: 18px; height: 18px; margin: 0 auto; border-radius: 50%; background: var(--accent-2); border: 4px solid var(--card); box-shadow: 0 0 0 2px var(--accent-2); transition: transform .3s; }
+  .stop:last-child .dot { background: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+  .stop:hover .dot { transform: scale(1.35); }
+  .stop .yr { align-self: start; padding-top: 10px; font-family: "Space Grotesk", sans-serif; font-size: 18px; font-weight: 700; }
+  .stop .org { display: block; font-size: 13px; font-style: italic; color: var(--muted); font-weight: 400; font-family: Inter, sans-serif; }
+  @media (max-width: 640px) {
+    .path { grid-template-columns: 1fr; padding: 10px 0 10px 10px; }
+    .path::before { left: 18px; right: auto; top: 10px; bottom: 10px; width: 2px; height: auto; background: linear-gradient(var(--accent-2), var(--accent)); }
+    .stop { grid-template-columns: 20px 1fr; grid-template-rows: auto auto; text-align: left; min-height: 0; column-gap: 16px; padding: 8px 0; }
+    .stop .dot { grid-row: 1 / 3; margin: 2px 0 0; }
+    .stop .role { grid-column: 2; padding: 0; }
+    .stop .yr { grid-column: 2; padding: 0; font-size: 15px; }
+  }
 
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
+  /* Skills */
+  .skill-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .skill-groups h3 { font-size: 16px; margin: 0 0 12px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-size: 14px; padding: 6px 12px; border-radius: 20px; background: #fff3ea; color: #8a4513; border: 1px solid #fbd5b5; transition: .2s; }
+  .chip:hover { background: var(--accent); color: #111; transform: translateY(-2px); }
+  .chips.teal .chip { background: #e6f5f3; color: #1d5f57; border-color: #b6e2dc; }
+  .chips.teal .chip:hover { background: var(--accent-2); color: #fff; }
+  .chips.slate .chip { background: #eef1f6; color: #334155; border-color: #d7dde8; }
+  .chips.slate .chip:hover { background: #334155; color: #fff; }
 
-        /* Project Cards */
-        .card-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: flex-start;
-        }
+  /* Projects */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+  .filters button { font: inherit; font-size: 14px; padding: 8px 16px; border-radius: 20px; border: 1px solid var(--line); background: var(--card); cursor: pointer; transition: .2s; }
+  .filters button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .proj { display: flex; flex-direction: column; background: var(--card); border-radius: var(--radius); overflow: hidden; text-decoration: none; color: inherit; box-shadow: 0 4px 18px rgba(15,23,42,.06); transition: transform .25s, box-shadow .25s, opacity .3s; }
+  .proj:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(15,23,42,.14); }
+  .proj .img { overflow: hidden; aspect-ratio: 16/9; background: #1e293b; }
+  .proj img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+  .proj:hover img { transform: scale(1.06); }
+  .proj .body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+  .proj .tag { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .8px; color: var(--accent-2); }
+  .proj h3 { margin: 4px 0 6px; font-size: 18px; }
+  .proj p { margin: 0 0 12px; font-size: 14px; color: var(--ink-2); flex: 1; }
+  .proj .go { font-size: 14px; font-weight: 600; color: var(--accent); }
+  .proj.hide { display: none; }
 
-        .card {
-            position: relative;
-            width: 150px;
-            height: 160px;
-            background-color: #333;
-            color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+  /* Certificates & contact */
+  .cert { display: flex; align-items: center; gap: 20px; text-decoration: none; }
+  .cert img { width: 140px; height: 100px; object-fit: cover; border-radius: 10px; }
+  .cert h3 { margin: 0 0 4px; }
+  .cert span { color: var(--accent); font-weight: 600; font-size: 14px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 20px; }
+  .contact-item { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .contact-item:last-child { border-bottom: 0; }
+  .contact-item .ic { width: 38px; height: 38px; border-radius: 10px; background: #fff3ea; display: grid; place-items: center; font-size: 18px; }
+  .contact-item small { display: block; color: var(--muted); font-size: 12px; }
+  .contact-item a { font-weight: 500; text-decoration: none; }
+  .contact-item a:hover { color: var(--accent); }
+  #map { height: 100%; min-height: 280px; border-radius: var(--radius); }
 
-        .card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
+  footer { margin-top: 70px; background: var(--hero); color: #94a3b8; text-align: center; padding: 22px; font-size: 14px; }
+  #top { position: fixed; right: 20px; bottom: 20px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--accent); color: #111; font-size: 20px; cursor: pointer; opacity: 0; pointer-events: none; transition: .3s; box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+  #top.show { opacity: 1; pointer-events: auto; }
 
-        .card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.8;
-        }
+  /* Reveal on scroll */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
 
-        .card .details {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover .details {
-            transform: translateY(0);
-        }
-
-        .details h3 {
-            margin: 0;
-            font-size: 16px;
-        }
-
-        .details p {
-            margin: 5px 0 0;
-            font-size: 9px;
-        }
-
-        /* Employment Timeline */
-        .timeline {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            margin: 50px auto;
-        }
-
-        .timeline::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: black;
-            top: 50%;
-            left: 0;
-            z-index: -1;
-        }
-
-        .event {
-            position: relative;
-            text-align: left;
-            width: 23%;
-        }
-
-        .event .dot {
-            width: 12px;
-            height: 12px;
-            background-color: #6b9f89;
-            border-radius: 50%;
-            display: inline-block;
-            position: relative;
-            top: -5px;
-        }
-
-        .event h3 {
-            font-size: 14px;
-            margin: 5px 0;
-        }
-
-        .event p {
-            font-size: 12px;
-            font-style: italic;
-            color: gray;
-        }
-
-        /* Skills List */
-        .skills ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-        /* Card layout overrides: text always visible, equal heights */
-        .card-container { align-items: stretch; }
-        .card-container > a { display: flex; text-decoration: none; color: inherit; }
-        .card { width: 220px; height: auto; display: flex; flex-direction: column; overflow: hidden; }
-        .card img { width: 100%; height: 120px; object-fit: cover; display: block; opacity: 1; }
-        .card .details { position: static; transform: none; box-sizing: border-box; width: 100%; flex: 1; padding: 12px; background: #111; color: #fff; }
-        .card .details h3 { font-size: 15px; margin: 0 0 6px; }
-        .card .details p { font-size: 13px; margin: 0; line-height: 1.4; }
-	</style>
+  @media (max-width: 860px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .two, .contact-grid, .skill-groups { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .links { display: none; position: absolute; top: 60px; left: 0; right: 0; flex-direction: column; background: var(--hero); padding: 10px 20px 16px; }
+    .links.open { display: flex; }
+    .menu-btn { display: block; }
+  }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } .cert { flex-direction: column; align-items: flex-start; } }
+</style>
 </head>
-
 <body>
-    <header>
-        <h1>Solar Shrestha-Greene</h1>
-        <p>Data Analyst Portfolio</p>
-    </header>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#education">Education</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-	<a href="#certificates">Certificates</a>
-    </nav>
 
-    <section id="about" class="container">
- <br>
-      
-        <h2>About Me</h2>
-        <p>
-             👋Hi! I'm a motivated data analytics graduate student with a solid foundation in data visualization, business analysis, and
-            reporting. Skilled in MySQL, Python, R Studio, Power BI, Tableau, and Microsoft Excel, with experience in leveraging data to uncover
-            insights and support decision-making. I am currently seeking an internship to apply academic knowledge to real-world business challenges.❤️
-        </p>
-    </section>
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#home">Solar<span>.</span></a>
+    <button class="menu-btn" aria-label="Menu" onclick="document.querySelector('.links').classList.toggle('open')">&#9776;</button>
+    <div class="links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-    <section id="education" class="container">
-        <h2>Education</h2>
-        <p><strong>Master's of Science: Data Analytics<br> Major: Data Science</strong><br>Southern New Hampshire University</p>
-        <p><strong>Bachelor's of Science: Business Management <br> Major:Information Systems</strong><br>Southern New Hampshire University</p>
-    </section>
+<header class="hero" id="home">
+  <canvas id="net" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <span class="eyebrow">Data Analyst Portfolio</span>
+    <h1>Solar Shrestha-Greene</h1>
+    <div class="typed">I build <b id="typed">dashboards that drive decisions</b></div>
+    <p class="lead">M.S. in Data Analytics from Southern New Hampshire University. I turn messy operational data into clear insights, with hands-on work in hospitality, vacation rentals and small-business operations.</p>
+    <div class="btns">
+      <a class="btn primary" href="#projects">View my projects</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/solarshrestha" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</header>
 
-    <section id="experience" class="container">
-        <h2>Work Experience</h2>
-        <p><strong>Data Analyst Intern/Billing</strong><br>Deep Creek Concierge (06/2023-Present, Oakland, MD)</p>
-	    <ul>
-            <li>Identify patterns in revenue, payments, and customer billing behaviors.</li>
+<div class="wrap">
+  <div class="stats reveal">
+    <div class="stat"><b data-count="7">0</b><span>Portfolio projects</span></div>
+    <div class="stat"><b data-count="3">0</b><span>Certifications</span></div>
+    <div class="stat"><b data-count="2">0</b><span>Degrees from SNHU</span></div>
+    <div class="stat"><b data-count="6" data-suffix="+">0</b><span>Analytics tools</span></div>
+  </div>
+
+  <section id="about" class="reveal">
+    <div class="sec-title"><span class="num">01</span><h2>About me</h2></div>
+    <div class="two">
+      <div class="panel">
+        <p style="margin-top:0">👋 Hi! I'm a motivated data analytics graduate with a solid foundation in data visualization, business analysis and reporting. I'm skilled in MySQL, Python, R Studio, Power BI, Tableau and Microsoft Excel, with experience using data to uncover insights and support decision-making.</p>
+        <p style="margin-bottom:0">I'm currently looking for an opportunity to apply my academic knowledge to real-world business challenges. ❤️</p>
+      </div>
+      <div class="panel" id="education">
+        <h3 style="margin-top:0">Education</h3>
+        <div class="edu">
+          <div><strong>Master of Science, Data Analytics</strong><small>Major: Data Science · Southern New Hampshire University</small></div>
+          <div><strong>Bachelor of Science, Business Management</strong><small>Major: Information Systems · Southern New Hampshire University</small></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="reveal">
+    <div class="sec-title"><span class="num">02</span><h2>Experience</h2></div>
+    <div class="panel path" id="employment-timeline">
+      <div class="stop"><div class="role">Senior Client Advocate</div><div class="dot"></div><div class="yr">2011<span class="org">Bank of America</span></div></div>
+      <div class="stop"><div class="role">Service Team Manager</div><div class="dot"></div><div class="yr">2019<span class="org">Bank of America</span></div></div>
+      <div class="stop"><div class="role">Training Specialist</div><div class="dot"></div><div class="yr">2021<span class="org">Bank of America</span></div></div>
+      <div class="stop"><div class="role">Data Analyst Intern/Billing</div><div class="dot"></div><div class="yr">2024<span class="org">Deep Creek Concierge</span></div></div>
+    </div>
+    <div class="panel">
+      <div class="timeline">
+        <div class="job">
+          <div class="when">06/2023 – Present</div>
+          <h3>Data Analyst Intern / Billing</h3>
+          <div class="where">Deep Creek Concierge · Oakland, MD</div>
+          <ul>
+            <li>Identify patterns in revenue, payments and customer billing behaviors.</li>
             <li>Compare payments received with invoices issued.</li>
             <li>Update billing records and assist in account adjustments.</li>
-	    <li>Assist in generating, verifying, and sending invoices to customers.</li>
-	    <li>Develop scripts (Excel, SQL) to streamline data entry or report generation.</li>
-           </ul>
-
-	   
-	    <p><strong>New Hire Trainer</strong><br>TTEC (09/2021 - 10/2024, Morgantown, WV)</p>
-	    <ul>
+            <li>Assist in generating, verifying and sending invoices to customers.</li>
+            <li>Develop scripts (Excel, SQL) to streamline data entry and report generation.</li>
+          </ul>
+        </div>
+        <div class="job">
+          <div class="when">09/2021 – 10/2024</div>
+          <h3>New Hire Trainer</h3>
+          <div class="where">TTEC · Morgantown, WV</div>
+          <ul>
             <li>Trained new hires on tools and processes, ensuring proficiency in client requirements.</li>
             <li>Designed and implemented training dashboards to track new hire performance metrics.</li>
-            <li>Provided data-driven insights for process improvement and enhanced team collaboration.</li>
-            </ul>
-
-         <p><strong>Service Delivery Team Lead</strong><br>TTEC (09/2019 - 09/2021, Remote)</p>
-        <ul>
-            <li>Analyzed and presented operational metrics to improve efficiency.</li>
-            <li>Created performance dashboards to visualize agent productivity using Tableau.</li>
-            <li>Collaborated with teams to enhance quality processes, improving effectiveness by 15%.</li>
-        </ul>
-    </section>
-
-    <section id="employment-timeline" class="container">
-  <div class="row hide-if-small-screen" style="padding-top: 5%;">
-    <div class="col-lg-12 text-center">
-        <svg width="100%" height="120" viewBox="0 0 1000 120" preserveAspectRatio="xMidYMid meet">
-            <!-- Horizontal Line -->
-            <line x1="50" y1="50" x2="950" y2="50" style="stroke:black; stroke-width:1.5" />
-
-            <!-- Timeline Events -->
-            <!-- 2011: Senior Client Advocate -->
-            <circle cx="220" cy="50" r="10" stroke="#f8f9fa" stroke-width="6" fill="#69b3a2" />
-            <text text-anchor="middle" x="220" y="80" fill="black">2011</text>
-            <text font-size="13" text-anchor="middle" x="220" y="25" fill="black">Senior Client Advocate</text>
-            <text font-size="13" font-style="italic" text-anchor="middle" x="220" y="100" fill="#808080">Bank of America</text>
-
-            <!-- 2019: Service Team Manager -->
-            <circle cx="450" cy="50" r="10" stroke="#f8f9fa" stroke-width="6" fill="#69b3a2" />
-            <text text-anchor="middle" x="450" y="80" fill="black">2019</text>
-            <text font-size="13" text-anchor="middle" x="450" y="25" fill="black">Service Team Manager</text>
-            <text font-size="13" font-style="italic" text-anchor="middle" x="450" y="100" fill="#808080">Bank of America</text>
-
-            <!-- 2021: Training Specialist -->
-            <circle cx="650" cy="50" r="10" stroke="#f8f9fa" stroke-width="6" fill="#69b3a2" />
-            <text text-anchor="middle" x="650" y="80" fill="black">2021</text>
-            <text font-size="13" text-anchor="middle" x="650" y="25" fill="black">Training Specialist</text>
-            <text font-size="13" font-style="italic" text-anchor="middle" x="650" y="100" fill="#808080">Bank of America</text>
-
-            <!-- 2024: Data Analyst Intern/Billing -->
-            <circle cx="850" cy="50" r="10" stroke="#f8f9fa" stroke-width="6" fill="#69b3a2" />
-            <text text-anchor="middle" x="850" y="80" fill="black">2024</text>
-            <text font-size="13" text-anchor="middle" x="850" y="25" fill="black">Data Analyst Intern/Billing</text>
-            <text font-size="13" font-style="italic" text-anchor="middle" x="850" y="100" fill="#808080">Deep Creek Concierge</text>
-        </svg>
-    </div>
-</div>
-    </section>
-
-	
-
-    <section id="skills" class="container skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Data Visualization (Power BI, Tableau)</li>
-            <li>Business Data Analysis</li>
-            <li>Statistical Modeling</li>
-	    <li>MS Office 365 (Word, Outlook, Teams, and SharePoint)</li>
-            <li>MS Power Suite (Excel and PowerPoint)</li>
-            <li>Programming Languages: R Studio, MySQL,and Python</li>
-            <li>Predictive Modeling</li>
-            <li>Problem Solving</li>
-        </ul>
-    </section>
-
-    <section id="projects" class="container">
-        <h2>Key Projects</h2>
-        <div class="card-container">
-            <!-- FaceBook Project-->
-            <div class="card">
-                <img src="Pic8.png" alt="FaceBook Data Project">
-                <div class="details">
-                    <h3>Facebook Data Project</h3>
-                      <p>(Work in progress) Analyzed Facebook engagement data to find which posts drive reach and interaction</p>
-                </div>
-            </div>
-
-               <!-- Credit Risk Project (Now Opens PDF) -->
-        <a href="capstone.html" target="_blank"> 
-            <div class="card">
-                <img src="Pic9.jpg" alt="Credit Risk Analysis">
-                <div class="details">
-                    <h3>Credit Risk Analysis</h3>
-                    <p>Determine Credit Worthiness based on Client's Demographics</p>
-                </div>
-            </div>
-        </a>
-
-            <!-- AirBnb Project (Now Clickable) -->
-            <a href="AirBnb%20Tableau%20project%20screenshot.png" target="_blank"> 
-                <div class="card">
-                    <img src="AirBnb%20Tableau%20project%20screenshot.png" alt="AirBnb Project">
-                    <div class="details">
-                        <h3>Tableau AirBnb Dashboard Project</h3>
-                        <p> AirBnb's Sales & Marketing</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Reservation Dashboard -->
-            <a href="reservation-dashboard/">
-                <div class="card">
-                    <img src="Pic10.png" alt="Reservation Dashboard">
-                    <div class="details">
-                        <h3>Reservation Management Dashboard</h3>
-                        <p>Merges live iCal feeds from Airbnb, Booking.com, Hipcamp and direct bookings into one occupancy and reservation view. HTML · JavaScript · iCal</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- WYG Booking Site -->
-            <a href="https://dclconcierge.com/book-now" target="_blank">
-                <div class="card">
-                    <img src="Pic11.png" alt="Glamping Booking Portal">
-                    <div class="details">
-                        <h3>Wild Yough Glamping Booking &amp; Guest Portal</h3>
-                        <p>Direct-booking site with a night-by-night pricing and tax quote engine, plus a guest dashboard for reservations, changes and add-ons. JavaScript · WordPress</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Vehicle Expense Log -->
-            <a href="vehicle-expense-log/">
-                <div class="card">
-                    <img src="Pic12.png" alt="Vehicle Expense Log">
-                    <div class="details">
-                        <h3>DCLC Vehicle &amp; Expense Log</h3>
-                        <p>Mobile trip, fuel and meal logger that saves each entry to a Google Sheet through Apps Script for expense reporting. Apps Script · Google Sheets</p>
-                    </div>
-                </div>
-            </a>
-
-            <!-- DCLC Website -->
-            <a href="https://dclconcierge.com" target="_blank">
-                <div class="card">
-                    <img src="Pic13.png" alt="DCLC Website">
-                    <div class="details">
-                        <h3>Deep Creek Lake Concierge Website</h3>
-                        <p>Company site with an interactive service catalog, tiered pricing and a lead-capture quote form. WordPress · HTML · CSS</p>
-                    </div>
-                </div>
-            </a>
+            <li>Provided data-driven insights for process improvement and team collaboration.</li>
+          </ul>
         </div>
-    </section>
+        <div class="job" style="padding-bottom:0">
+          <div class="when">09/2019 – 09/2021</div>
+          <h3>Service Delivery Team Lead</h3>
+          <div class="where">TTEC · Remote</div>
+          <ul>
+            <li>Analyzed and presented operational metrics to improve efficiency.</li>
+            <li>Created performance dashboards in Tableau to visualize agent productivity.</li>
+            <li>Collaborated with teams to enhance quality processes, improving effectiveness by 15%.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section id="skills" class="reveal">
+    <div class="sec-title"><span class="num">03</span><h2>Skills</h2></div>
+    <div class="skill-groups">
+      <div class="panel">
+        <h3>Analysis &amp; modeling</h3>
+        <div class="chips"><span class="chip">Business data analysis</span><span class="chip">Statistical modeling</span><span class="chip">Predictive modeling</span><span class="chip">Problem solving</span></div>
+      </div>
+      <div class="panel">
+        <h3>Programming &amp; visualization</h3>
+        <div class="chips teal"><span class="chip">MySQL</span><span class="chip">Python</span><span class="chip">R Studio</span><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">HTML / JavaScript</span></div>
+      </div>
+      <div class="panel">
+        <h3>Productivity</h3>
+        <div class="chips slate"><span class="chip">Excel</span><span class="chip">PowerPoint</span><span class="chip">Word</span><span class="chip">Outlook</span><span class="chip">Teams</span><span class="chip">SharePoint</span><span class="chip">Google Sheets</span></div>
+      </div>
+    </div>
+  </section>
 
-    <section id="certificates" class="container">
-        <h2>Certificates</h2>
-        
-        <!-- Clickable Card to Redirect to Certificates Page -->
-        <a href="certificates.html">
-            <div class="card">
-                <img src="Certificatelogo.png" alt="Certificates">
-                <div class="details">
-                    <h3>Data Analytics Certificates</h3>
-                    <p>Click to View Certificates</p>
-                </div>
-            </div>
-        </a>
+  <section id="projects" class="reveal">
+    <div class="sec-title"><span class="num">04</span><h2>Key projects</h2></div>
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button class="on" data-f="all">All</button>
+      <button data-f="analysis">Data analysis</button>
+      <button data-f="ops">Hospitality &amp; operations tools</button>
+    </div>
+    <div class="grid">
+      <div class="proj" data-cat="analysis">
+        <div class="img"><img src="Pic8.png" alt="Facebook Data Project"></div>
+        <div class="body"><span class="tag">Data analysis</span><h3>Facebook Data Project</h3><p>(Work in progress) Analyzed Facebook engagement data to find which posts drive reach and interaction.</p></div>
+      </div>
+      <a class="proj" data-cat="analysis" href="capstone.html" target="_blank">
+        <div class="img"><img src="Pic9.jpg" alt="Credit Risk Analysis"></div>
+        <div class="body"><span class="tag">Capstone · CRISP-DM</span><h3>Credit Risk Analysis</h3><p>Determine credit worthiness based on client demographics, from business understanding to deployment.</p><span class="go">View capstone →</span></div>
+      </a>
+      <a class="proj" data-cat="analysis" href="AirBnb%20Tableau%20project%20screenshot.png" target="_blank">
+        <div class="img"><img src="AirBnb%20Tableau%20project%20screenshot.png" alt="Tableau Airbnb dashboard"></div>
+        <div class="body"><span class="tag">Tableau</span><h3>Tableau Airbnb Dashboard</h3><p>Airbnb's sales and marketing performance in an interactive Tableau dashboard.</p><span class="go">View dashboard →</span></div>
+      </a>
+      <a class="proj" data-cat="ops" href="reservation-dashboard/">
+        <div class="img"><img src="Pic10.png" alt="Reservation Dashboard"></div>
+        <div class="body"><span class="tag">HTML · JavaScript · iCal</span><h3>Reservation Management Dashboard</h3><p>Merges live iCal feeds from Airbnb, Booking.com, Hipcamp and direct bookings into one occupancy and reservation view.</p><span class="go">View project →</span></div>
+      </a>
+      <a class="proj" data-cat="ops" href="https://dclconcierge.com/book-now" target="_blank">
+        <div class="img"><img src="Pic11.png" alt="Glamping Booking Portal"></div>
+        <div class="body"><span class="tag">JavaScript · WordPress</span><h3>Wild Yough Glamping Booking &amp; Guest Portal</h3><p>Direct-booking site with a night-by-night pricing and tax quote engine, plus a guest dashboard for reservations, changes and add-ons.</p><span class="go">Visit live site →</span></div>
+      </a>
+      <a class="proj" data-cat="ops" href="vehicle-expense-log/">
+        <div class="img"><img src="Pic12.png" alt="Vehicle Expense Log"></div>
+        <div class="body"><span class="tag">Apps Script · Google Sheets</span><h3>DCLC Vehicle &amp; Expense Log</h3><p>Mobile trip, fuel and meal logger that saves each entry to a Google Sheet through Apps Script for expense reporting.</p><span class="go">View project →</span></div>
+      </a>
+      <a class="proj" data-cat="ops" href="https://dclconcierge.com" target="_blank">
+        <div class="img"><img src="Pic13.png" alt="DCLC Website"></div>
+        <div class="body"><span class="tag">WordPress · HTML · CSS</span><h3>Deep Creek Lake Concierge Website</h3><p>Company site with an interactive service catalog, tiered pricing and a lead-capture quote form.</p><span class="go">Visit live site →</span></div>
+      </a>
+    </div>
+  </section>
 
-    </section>
+  <section id="certificates" class="reveal">
+    <div class="sec-title"><span class="num">05</span><h2>Certificates</h2></div>
+    <a class="panel cert" href="certificates.html">
+      <img src="Certificatelogo.png" alt="Certificates">
+      <div><h3>Data Analytics Certificates</h3><p style="margin:0 0 6px;color:var(--muted)">Professional certifications in data analytics and visualization.</p><span>View certificates →</span></div>
+    </a>
+  </section>
 
-    <section id="contact" class="container">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:solarshrestha@live.com">solarshrestha@live.com</a></p>
-        <p>Phone: 304-319-0236</p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/solarshrestha" target="_blank">LinkedIn Profile</a></p>
-    </section>
+  <section id="contact" class="reveal">
+    <div class="sec-title"><span class="num">06</span><h2>Contact</h2></div>
+    <div class="contact-grid">
+      <div class="panel">
+        <p style="margin-top:0;color:var(--ink-2)">I'm open to data analyst roles. The best way to reach me is email or LinkedIn.</p>
+        <div class="contact-item"><div class="ic">✉️</div><div><small>Email</small><a href="mailto:solarshrestha@live.com">solarshrestha@live.com</a></div></div>
+        <div class="contact-item"><div class="ic">📞</div><div><small>Phone</small><a href="tel:+13043190236">304-319-0236</a></div></div>
+        <div class="contact-item"><div class="ic">💼</div><div><small>LinkedIn</small><a href="https://www.linkedin.com/in/solarshrestha" target="_blank">linkedin.com/in/solarshrestha</a></div></div>
+      </div>
+      <div id="map" aria-label="Map showing my location"></div>
+    </div>
+  </section>
+</div>
 
-
-<!-- Map Section -->
-<section class="container">
-    <h2>Location</h2>
-    <div id="map" style="height: 400px; width: 100%;"></div>
-</section>
+<footer>&copy; 2026 Solar Shrestha-Greene · Data Analyst Portfolio</footer>
+<button id="top" aria-label="Back to top" onclick="window.scrollTo({top:0})">↑</button>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Initialize the map
-        var map = L.map('map').setView([39.6295, -79.9559], 13); // Adjusted center for better view
+(function () {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Load map tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 18
-        }).addTo(map);
+  // Typed roles
+  var roles = ['dashboards that drive decisions', 'clean, reliable data pipelines', 'SQL and Python analyses', 'tools for real businesses'];
+  var el = document.getElementById('typed');
+  if (!reduce) {
+    var r = 0, i = roles[0].length, del = true;
+    setTimeout(function tick() {
+      var word = roles[r];
+      i += del ? -1 : 1;
+      el.textContent = word.slice(0, i);
+      var wait = del ? 35 : 70;
+      if (!del && i === word.length) { del = true; wait = 1800; }
+      else if (del && i === 0) { del = false; r = (r + 1) % roles.length; word = roles[r]; wait = 300; }
+      setTimeout(tick, wait);
+    }, 2200);
+  }
 
-        // Add a marker
-        L.marker([39.6295, -79.9559]).addTo(map)
-            .bindPopup('<b>My Location</b><br>West Virginia, USA')
-            .openPopup();
+  // Reveal on scroll + count-up stats
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      e.target.querySelectorAll('[data-count]').forEach(function (n) {
+        var end = +n.dataset.count, suf = n.dataset.suffix || '', t0 = null;
+        if (reduce) { n.textContent = end + suf; return; }
+        requestAnimationFrame(function step(ts) {
+          t0 = t0 || ts;
+          var p = Math.min((ts - t0) / 1200, 1);
+          n.textContent = Math.round(end * (1 - Math.pow(1 - p, 3))) + suf;
+          if (p < 1) requestAnimationFrame(step);
+        });
+      });
+      io.unobserve(e.target);
     });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(function (s) { io.observe(s); });
+
+  // Project filters
+  document.querySelectorAll('.filters button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('.filters button').forEach(function (x) { x.classList.remove('on'); });
+      b.classList.add('on');
+      document.querySelectorAll('.proj').forEach(function (p) {
+        p.classList.toggle('hide', b.dataset.f !== 'all' && p.dataset.cat !== b.dataset.f);
+      });
+    });
+  });
+
+  // Active nav link + back-to-top
+  var links = document.querySelectorAll('.links a');
+  var secs = Array.prototype.map.call(links, function (a) { return document.querySelector(a.getAttribute('href')); });
+  var topBtn = document.getElementById('top');
+  window.addEventListener('scroll', function () {
+    var y = window.scrollY + 120;
+    secs.forEach(function (s, k) { if (s) links[k].classList.toggle('active', y >= s.offsetTop && y < s.offsetTop + s.offsetHeight); });
+    topBtn.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  links.forEach(function (a) { a.addEventListener('click', function () { document.querySelector('.links').classList.remove('open'); }); });
+
+  // Animated data-network background in hero
+  var c = document.getElementById('net'), ctx = c.getContext('2d'), pts = [];
+  function size() {
+    c.width = c.offsetWidth * devicePixelRatio; c.height = c.offsetHeight * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    var n = Math.min(70, Math.round(c.offsetWidth / 18));
+    pts = [];
+    for (var k = 0; k < n; k++) pts.push({ x: Math.random() * c.offsetWidth, y: Math.random() * c.offsetHeight, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 });
+  }
+  function draw() {
+    var w = c.offsetWidth, h = c.offsetHeight;
+    ctx.clearRect(0, 0, w, h);
+    for (var a = 0; a < pts.length; a++) {
+      var p = pts[a];
+      if (!reduce) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > w) p.vx *= -1; if (p.y < 0 || p.y > h) p.vy *= -1; }
+      for (var b = a + 1; b < pts.length; b++) {
+        var q = pts[b], d = Math.hypot(p.x - q.x, p.y - q.y);
+        if (d < 130) { ctx.strokeStyle = 'rgba(240,138,60,' + (1 - d / 130) * .35 + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+      }
+      ctx.fillStyle = a % 5 === 0 ? '#f08a3c' : '#5eead4';
+      ctx.beginPath(); ctx.arc(p.x, p.y, a % 5 === 0 ? 2.6 : 1.6, 0, 6.3); ctx.fill();
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  size(); draw(); window.addEventListener('resize', size);
+
+  // Map
+  if (window.L) {
+    var map = L.map('map', { scrollWheelZoom: false }).setView([39.6295, -79.9559], 11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '© OpenStreetMap contributors', maxZoom: 18 }).addTo(map);
+    L.marker([39.6295, -79.9559]).addTo(map).bindPopup('<b>My Location</b><br>West Virginia, USA').openPopup();
+  } else {
+    document.getElementById('map').style.display = 'none';
+  }
+})();
 </script>
-
-
-    <footer>
-        <p>&copy; 2026 Solar Shrestha-Greene</p>
-    </footer>
 </body>
 </html>
