@@ -2,7 +2,7 @@
 
 A mobile-friendly web app for logging business trips, fuel and meal expenses, with every entry saved to a Google Sheet for reporting. Built for Deep Creek Lake Concierge's field-service work.
 
-   ![App screenshot](vehicle%20log.png)
+   ![App screenshot](log%20form.png)
 
 ## The problem
 Mileage, fuel and meal receipts were tracked inconsistently, making tax-time deductions and job costing slow and error-prone.
