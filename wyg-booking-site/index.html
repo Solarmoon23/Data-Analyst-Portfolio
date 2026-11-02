@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wild Yough Glamping Booking Site | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #333; color: #fff; padding: 20px; text-align: center; }
+  header h1 { margin: 0; font-size: 28px; }
+  header p { margin: 6px 0 0; color: #ccc; }
+  nav { background: #444; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 900px; margin: auto; padding: 20px; }
+  .hero { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); display: block; background: #333; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  h2 { border-bottom: 2px solid #6b9f89; padding-bottom: 4px; margin-top: 32px; }
+  pre { background: #222; color: #e6e6e6; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+  .note { background: #fff8e1; border-left: 4px solid #f4a261; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #6b9f89; color: #fff; padding: 10px 18px; border-radius: 6px; text-decoration: none; }
+  footer { background: #333; color: #fff; text-align: center; padding: 10px; margin-top: 40px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); font-size: 15px; }
+  th, td { padding: 11px 13px; text-align: left; vertical-align: top; border-bottom: 1px solid #eee; }
+  th { background: #333; color: #fff; font-weight: 600; }
+  td:first-child { font-weight: 600; }
+  td code, li code { background: #eef2f0; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+  .live { display: inline-block; margin: 14px 10px 0 0; background: #333; color: #fff; padding: 9px 16px; border-radius: 6px; text-decoration: none; font-size: 15px; }
+  .live:hover { background: #6b9f89; }
+  .caption { font-size: 13px; color: #666; margin-top: 6px; }
+  .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 12px; }
+  .stack div { background: #fff; border-radius: 10px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.06); font-size: 14px; }
+  .stack b { display: block; font-size: 16px; margin-bottom: 4px; color: #2f5d4c; }
+  @media (max-width: 600px) { th, td { padding: 9px; font-size: 14px; } table { display: block; overflow-x: auto; } }
+</style>
+</head>
+<body>
+<header><h1>Wild Yough Glamping Booking Site</h1><p>Direct-booking website and guest portal for a 5-hut glampground in Oakland, MD</p></header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <img class="hero" src="screenshots/wyg-home.png" alt="Wild Yough Glamping Booking Site screenshot" onerror="this.onerror=null;this.src='../Pic11.png'">
+  <a class="live" href="https://dclconcierge.com/wyg" target="_blank" rel="noopener">Visit the live site &rarr;</a>
+  <p class="tags" style="margin-top:16px"><span>WordPress (Kubio)</span><span>HTML</span><span>CSS</span><span>JavaScript</span></p>
+
+  <h2>The goal</h2>
+  <p>Wild Yough Glamping is a 5-hut glampground on 350 private acres along the Youghiogheny River in Oakland, MD. Third-party booking platforms charge fees and hide guest contact details, so the site is built to move guests to direct reservations on the business's own website.</p>
+
+  <h2>What I built and how</h2>
+  <table>
+    <tr><th>Feature</th><th>Status</th><th>What it does</th><th>Built with</th></tr>
+    <tr><td>Hut comparison table</td><td>Live</td><td>Compares all 5 huts on amenities, capacity, privacy, bathhouse distance and accessibility.</td><td>HTML table, CSS</td></tr>
+    <tr><td>Quote calculator</td><td>Live</td><td>Prices a stay night by night: weekend (Fri&ndash;Sat) vs mid-week (Sun&ndash;Thu) rates, one hut vs the full site, 6% Maryland sales tax, 8% Garrett County lodging tax and the deposit due.</td><td>JavaScript</td></tr>
+    <tr><td>Guest reviews</td><td>Live</td><td>Reviews can be filtered by hut.</td><td>JavaScript, CSS</td></tr>
+    <tr><td>Lead capture</td><td>Live</td><td>Mailing-list discount signup and a partnership inquiry form.</td><td>HTML forms, WordPress</td></tr>
+    <tr><td>Online reservations</td><td>In development</td><td>Guests book and pay directly on the site.</td><td>JavaScript, WordPress</td></tr>
+    <tr><td>Guest dashboard</td><td>In development</td><td>Guests look up and confirm a reservation, request changes and add services such as extra cots, pets or concierge extras.</td><td>JavaScript, WordPress</td></tr>
+  </table>
+
+  <h2>How the quote calculator works</h2>
+<pre>Check-in and check-out dates  +  one hut or full site
+                 |
+                 v
+   For each night: Fri or Sat?  -> weekend rate
+                   Sun to Thu?  -> mid-week rate
+                 |
+                 v
+   Subtotal = sum of nightly rates
+                 |
+                 v
+   + 6% Maryland sales tax  + 8% Garrett County lodging tax
+                 |
+                 v
+   Total  ->  deposit due today</pre>
+
+  <h2>Code snippet: night-by-night pricing</h2>
+  <p>A simplified version of the calculator's core logic. Each night is priced on its own, so a Thursday-to-Sunday stay mixes mid-week and weekend rates correctly.</p>
+<pre>// Simplified version of the quote logic (rates and deposit are placeholders)
+const RATES = { weekday: 0, weekend: 0 };      // set per hut or full site
+const MD_SALES_TAX = 0.06;
+const GARRETT_LODGING_TAX = 0.08;
+const DEPOSIT_RATE = 0.0;                        // share of total due at booking
+
+function quote(checkIn, checkOut) {
+  let subtotal = 0;
+  for (let night = new Date(checkIn); night &lt; checkOut; night.setDate(night.getDate() + 1)) {
+    const day = night.getDay();                  // 0 = Sun ... 5 = Fri, 6 = Sat
+    subtotal += (day === 5 || day === 6) ? RATES.weekend : RATES.weekday;
+  }
+  const taxes = subtotal * (MD_SALES_TAX + GARRETT_LODGING_TAX);
+  const total = subtotal + taxes;
+  return { subtotal, taxes, total, deposit: total * DEPOSIT_RATE };
+}</pre>
+  <p class="caption">Simplified for illustration; the live calculator also switches between single-hut and full-site rates.</p>
+
+  <h2>Skills demonstrated</h2>
+  <ul>
+    <li>Rule-based pricing and tax calculations in JavaScript</li>
+    <li>Structuring operational data (units, rates, amenities) for display and comparison</li>
+    <li>UX for a booking flow designed to convert visitors into direct reservations</li>
+  </ul>
+
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer><p>&copy; 2026 Solar Shrestha-Greene</p></footer>
+</body>
+</html>

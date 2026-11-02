@@ -25,3 +25,6 @@ Shift bookings from third-party platforms (which take fees and hide guest contac
 - HTML, CSS, JavaScript, WordPress (Kubio)
 
 > Guest data shown in screenshots is fictional.
+
+## Project page
+See the [project page](https://solarmoon23.github.io/Data-Analyst-Portfolio/wyg-booking-site/) for a feature-by-feature breakdown and a code snippet.

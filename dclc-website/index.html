@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deep Creek Lake Concierge Website | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #333; color: #fff; padding: 20px; text-align: center; }
+  header h1 { margin: 0; font-size: 28px; }
+  header p { margin: 6px 0 0; color: #ccc; }
+  nav { background: #444; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 900px; margin: auto; padding: 20px; }
+  .hero { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); display: block; background: #333; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  h2 { border-bottom: 2px solid #6b9f89; padding-bottom: 4px; margin-top: 32px; }
+  pre { background: #222; color: #e6e6e6; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+  .note { background: #fff8e1; border-left: 4px solid #f4a261; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #6b9f89; color: #fff; padding: 10px 18px; border-radius: 6px; text-decoration: none; }
+  footer { background: #333; color: #fff; text-align: center; padding: 10px; margin-top: 40px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); font-size: 15px; }
+  th, td { padding: 11px 13px; text-align: left; vertical-align: top; border-bottom: 1px solid #eee; }
+  th { background: #333; color: #fff; font-weight: 600; }
+  td:first-child { font-weight: 600; }
+  td code, li code { background: #eef2f0; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+  .live { display: inline-block; margin: 14px 10px 0 0; background: #333; color: #fff; padding: 9px 16px; border-radius: 6px; text-decoration: none; font-size: 15px; }
+  .live:hover { background: #6b9f89; }
+  .caption { font-size: 13px; color: #666; margin-top: 6px; }
+  .stack { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; margin-top: 12px; }
+  .stack div { background: #fff; border-radius: 10px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.06); font-size: 14px; }
+  .stack b { display: block; font-size: 16px; margin-bottom: 4px; color: #2f5d4c; }
+  @media (max-width: 600px) { th, td { padding: 9px; font-size: 14px; } table { display: block; overflow-x: auto; } }
+</style>
+</head>
+<body>
+<header><h1>Deep Creek Lake Concierge Website</h1><p>Company site for a vacation-services and property-support business at Deep Creek Lake, MD</p></header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <img class="hero" src="screenshots/home.png" alt="Deep Creek Lake Concierge Website screenshot" onerror="this.onerror=null;this.src='../Pic13.png'">
+  <a class="live" href="https://dclconcierge.com" target="_blank" rel="noopener">Visit the live site &rarr;</a>
+  <p class="tags" style="margin-top:16px"><span>WordPress</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GoDaddy hosting</span></p>
+
+  <h2>The goal</h2>
+  <p>Deep Creek Lake Concierge offers eight service lines at three service levels. The site needed to explain them clearly, show what each level includes, and turn visitors into structured quote requests.</p>
+
+  <h2>My role</h2>
+  <p>Website maintenance, redesign and data: I build custom sections, forms and integrations on top of WordPress, and keep the content and pricing current.</p>
+
+  <h2>What I built and how</h2>
+  <table>
+    <tr><th>Feature</th><th>What it does</th><th>Built with</th></tr>
+    <tr><td>Service catalog</td><td>Clickable tiles for 8 service lines; each opens its details without leaving the page.</td><td>HTML structure, CSS grid layout, JavaScript click handling</td></tr>
+    <tr><td>Tiered pricing</td><td>Essentials, Signature Concierge and Premier packages shown side by side so visitors can compare levels.</td><td>HTML, CSS</td></tr>
+    <tr><td>Quote request form</td><td>Captures name, contact, service and service level; checks required fields and shows clear success or error messages.</td><td>HTML form, JavaScript validation, WordPress form handling</td></tr>
+    <tr><td>Photo gallery</td><td>Project photos open full size in a lightbox.</td><td>JavaScript, CSS</td></tr>
+    <tr><td>Testimonials and team</td><td>Client reviews and team bios build trust before the quote form.</td><td>HTML, CSS</td></tr>
+    <tr><td>Glamping booking link</td><td>Sends glamping guests to the <a href="../wyg-booking-site/">Wild Yough Glamping booking site</a>.</td><td>WordPress page structure</td></tr>
+  </table>
+
+  <h2>How the pieces fit</h2>
+  <div class="stack">
+    <div><b>WordPress</b>Hosts the pages, menus and media on GoDaddy, so content is easy to update.</div>
+    <div><b>HTML</b>Custom blocks for the service catalog, pricing tiers and form, added where the page builder fell short.</div>
+    <div><b>CSS</b>Layout, colors and mobile-friendly grids for the tiles and pricing cards.</div>
+    <div><b>JavaScript</b>Interactivity: opening service details, the gallery lightbox and form validation.</div>
+  </div>
+
+  <h2>Code snippet: quote form validation</h2>
+  <p>A simplified example of how the form checks a request before it is sent. Every request arrives with the same fields filled in, which is what makes the leads usable as data.</p>
+<pre>// Simplified example of the quote form&#x27;s validation pattern
+const form = document.querySelector(&quot;#quote-form&quot;);
+const message = document.querySelector(&quot;#form-message&quot;);
+
+form.addEventListener(&quot;submit&quot;, (event) =&gt; {
+  const required = [&quot;name&quot;, &quot;email&quot;, &quot;service&quot;, &quot;level&quot;];
+  const missing = required.filter((field) =&gt; !form.elements[field].value.trim());
+
+  if (missing.length &gt; 0) {
+    event.preventDefault();                       // stop the send
+    message.textContent = &quot;Please fill in: &quot; + missing.join(&quot;, &quot;);
+    message.className = &quot;error&quot;;
+    return;
+  }
+  message.textContent = &quot;Thanks! We&#x27;ll be in touch with your quote.&quot;;
+  message.className = &quot;success&quot;;
+});</pre>
+  <p class="caption">Simplified for illustration; field names are examples.</p>
+
+  <h2>Skills demonstrated</h2>
+  <ul>
+    <li>Custom HTML, CSS and JavaScript components inside WordPress</li>
+    <li>Form design that produces clean, structured lead data</li>
+    <li>Information architecture for a business with many services and price levels</li>
+  </ul>
+
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer><p>&copy; 2026 Solar Shrestha-Greene</p></footer>
+</body>
+</html>

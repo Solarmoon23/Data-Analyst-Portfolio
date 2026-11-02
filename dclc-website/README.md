@@ -18,3 +18,6 @@ Website maintenance, redesign and data — building custom sections, forms and i
 - Custom HTML/CSS/JavaScript components inside WordPress
 - Form design for structured lead data
 - Information architecture for a multi-service business
+
+## Project page
+See the [project page](https://solarmoon23.github.io/Data-Analyst-Portfolio/dclc-website/) for a feature-by-feature breakdown and a code snippet.
