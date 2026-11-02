@@ -43,7 +43,8 @@
 
   /* Hero */
   .hero { position: relative; background: var(--hero); color: #fff; overflow: hidden; }
-  #net { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .55; }
+  #net { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .6; }
+  @media (max-width: 700px) { #net { opacity: .8; } }
   .hero .wrap { position: relative; padding: 90px 20px 80px; }
   .eyebrow { display: inline-block; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(240,138,60,.4); padding: 4px 12px; border-radius: 20px; }
   .hero h1 { font-size: clamp(36px, 6vw, 60px); margin: 18px 0 8px; }
@@ -417,28 +418,84 @@
   }, { passive: true });
   links.forEach(function (a) { a.addEventListener('click', function () { document.querySelector('.links').classList.remove('open'); }); });
 
-  // Animated data-network background in hero
-  var c = document.getElementById('net'), ctx = c.getContext('2d'), pts = [];
+  // Animated data-network background in hero: reacts to mouse and touch
+  var hero = document.getElementById('home');
+  var c = document.getElementById('net'), ctx = c.getContext('2d'), pts = [], lastW = 0;
+  var small = function () { return c.offsetWidth < 700; };
+  var pointer = { x: -9999, y: -9999, active: false, t: 0 };
+  var ripples = [];
+  var touchDevice = window.matchMedia('(hover: none)').matches;
   function size() {
-    c.width = c.offsetWidth * devicePixelRatio; c.height = c.offsetHeight * devicePixelRatio;
-    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-    var n = Math.min(70, Math.round(c.offsetWidth / 18));
-    pts = [];
-    for (var k = 0; k < n; k++) pts.push({ x: Math.random() * c.offsetWidth, y: Math.random() * c.offsetHeight, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 });
-  }
-  function draw() {
     var w = c.offsetWidth, h = c.offsetHeight;
+    c.width = w * devicePixelRatio; c.height = h * devicePixelRatio;
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    if (w === lastW && pts.length) return;          // phone address bar hiding: keep the dots
+    lastW = w;
+    var n = small() ? Math.min(90, Math.max(45, Math.round(w * h / 5500))) : Math.min(80, Math.round(w / 16));
+    var speed = small() ? .6 : .4;
+    pts = [];
+    for (var k = 0; k < n; k++) pts.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - .5) * speed, vy: (Math.random() - .5) * speed });
+  }
+  function setPointer(x, y) {
+    var r = c.getBoundingClientRect();
+    pointer.x = x - r.left; pointer.y = y - r.top; pointer.active = true; pointer.t = Date.now();
+  }
+  hero.addEventListener('mousemove', function (e) { setPointer(e.clientX, e.clientY); });
+  hero.addEventListener('mouseleave', function () { pointer.active = false; });
+  hero.addEventListener('touchstart', function (e) { var t = e.touches[0]; setPointer(t.clientX, t.clientY); }, { passive: true });
+  hero.addEventListener('touchmove', function (e) { var t = e.touches[0]; setPointer(t.clientX, t.clientY); }, { passive: true });
+  hero.addEventListener('touchend', function () { pointer.t = Date.now(); });
+  hero.addEventListener('click', function (e) {
+    if (e.target.closest('a, button')) return;
+    var r = c.getBoundingClientRect();
+    ripples.push({ x: e.clientX - r.left, y: e.clientY - r.top, r: 0 });
+    pts.forEach(function (p) {                        // tap or click: push nearby dots outward
+      var dx = p.x - (e.clientX - r.left), dy = p.y - (e.clientY - r.top), d = Math.hypot(dx, dy) || 1;
+      if (d < 160) { p.vx += dx / d * 2.2; p.vy += dy / d * 2.2; }
+    });
+  });
+  function draw() {
+    var w = c.offsetWidth, h = c.offsetHeight, now = Date.now();
     ctx.clearRect(0, 0, w, h);
+    // On phones, a soft "ghost" pointer drifts across when nobody is touching
+    if (touchDevice && now - pointer.t > 2500) {
+      var tt = now / 4000;
+      pointer.x = w * (.5 + .38 * Math.sin(tt)); pointer.y = h * (.5 + .3 * Math.sin(tt * 1.7)); pointer.active = true;
+    }
+    var reach = small() ? 120 : 150, link = small() ? 110 : 130;
     for (var a = 0; a < pts.length; a++) {
       var p = pts[a];
-      if (!reduce) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > w) p.vx *= -1; if (p.y < 0 || p.y > h) p.vy *= -1; }
+      if (!reduce) {
+        if (pointer.active) {                          // gentle pull toward the pointer
+          var px = pointer.x - p.x, py = pointer.y - p.y, pd = Math.hypot(px, py);
+          var ghost = touchDevice && now - pointer.t > 2500, pull = ghost ? .006 : .02;
+          if (pd < 50 && pd > 1) { p.vx -= px / pd * .05; p.vy -= py / pd * .05; }      // keep a little space around the pointer
+          else if (pd < reach) { p.vx += px / pd * pull; p.vy += py / pd * pull; }
+        }
+        var sp = Math.hypot(p.vx, p.vy), max = small() ? 1.6 : 1.2;
+        if (sp > max) { p.vx *= .96; p.vy *= .96; }   // calm down after a tap
+        if (sp < .15) { p.vx += (Math.random() - .5) * .1; p.vy += (Math.random() - .5) * .1; }
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+      }
       for (var b = a + 1; b < pts.length; b++) {
         var q = pts[b], d = Math.hypot(p.x - q.x, p.y - q.y);
-        if (d < 130) { ctx.strokeStyle = 'rgba(240,138,60,' + (1 - d / 130) * .35 + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+        if (d < link) { ctx.strokeStyle = 'rgba(240,138,60,' + (1 - d / link) * .4 + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
       }
-      ctx.fillStyle = a % 5 === 0 ? '#f08a3c' : '#5eead4';
-      ctx.beginPath(); ctx.arc(p.x, p.y, a % 5 === 0 ? 2.6 : 1.6, 0, 6.3); ctx.fill();
+      if (pointer.active) {                            // lines from the pointer to nearby dots
+        var md = Math.hypot(p.x - pointer.x, p.y - pointer.y);
+        if (md < reach) { ctx.strokeStyle = 'rgba(94,234,212,' + (1 - md / reach) * .6 + ')'; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(pointer.x, pointer.y); ctx.stroke(); }
+      }
+      var big = a % 5 === 0;
+      ctx.fillStyle = big ? '#f08a3c' : '#5eead4';
+      ctx.beginPath(); ctx.arc(p.x, p.y, (big ? 2.6 : 1.7) * (small() ? 1.25 : 1), 0, 6.3); ctx.fill();
     }
+    ripples = ripples.filter(function (r) {
+      r.r += 4; var o = 1 - r.r / 180; if (o <= 0) return false;
+      ctx.strokeStyle = 'rgba(240,138,60,' + o * .7 + ')'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(r.x, r.y, r.r, 0, 6.3); ctx.stroke(); return true;
+    });
     if (!reduce) requestAnimationFrame(draw);
   }
   size(); draw(); window.addEventListener('resize', size);
