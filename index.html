@@ -44,10 +44,20 @@
   /* Hero */
   .hero { position: relative; background: var(--hero); color: #fff; overflow: hidden; }
   #net { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .6; }
-  @media (max-width: 700px) { #net { opacity: .8; } }
+  @media (max-width: 700px) { #net { opacity: 1; } }
   .hero .wrap { position: relative; padding: 90px 20px 80px; }
   .eyebrow { display: inline-block; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(240,138,60,.4); padding: 4px 12px; border-radius: 20px; }
   .hero h1 { font-size: clamp(36px, 6vw, 60px); margin: 18px 0 8px; }
+  .nowrap { white-space: nowrap; }
+  .hero h1.name {
+    background: linear-gradient(100deg, #fff 0%, #fff 40%, #f6b26b 50%, #fff 60%, #fff 100%);
+    background-size: 250% 100%; background-position: 100% 0;
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    animation: nameIn .9s ease-out both, shine 6s ease-in-out 1.2s infinite;
+  }
+  @keyframes nameIn { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  @keyframes shine { 0%, 60% { background-position: 100% 0; } 100% { background-position: -50% 0; } }
+  @media (prefers-reduced-motion: reduce) { .hero h1.name { animation: none; } }
   .typed { font-family: "Space Grotesk", sans-serif; font-size: clamp(20px, 3vw, 28px); color: #cbd5e1; min-height: 1.4em; }
   .typed b { color: #fff; font-weight: 500; border-right: 2px solid var(--accent); padding-right: 3px; }
   .hero p.lead { max-width: 620px; color: #94a3b8; font-size: 17px; margin: 18px 0 30px; }
@@ -188,7 +198,7 @@
   <canvas id="net" aria-hidden="true"></canvas>
   <div class="wrap">
     <span class="eyebrow">Data Analyst Portfolio</span>
-    <h1>Solar Shrestha-Greene</h1>
+    <h1 class="name">Solar <span class="nowrap">Shrestha-Greene</span></h1>
     <div class="typed">I build <b id="typed">dashboards that drive decisions</b></div>
     <p class="lead">M.S. in Data Analytics from Southern New Hampshire University. I turn messy operational data into clear insights, with hands-on work in hospitality, vacation rentals and small-business operations.</p>
     <div class="btns">
@@ -445,15 +455,17 @@
   hero.addEventListener('touchstart', function (e) { var t = e.touches[0]; setPointer(t.clientX, t.clientY); }, { passive: true });
   hero.addEventListener('touchmove', function (e) { var t = e.touches[0]; setPointer(t.clientX, t.clientY); }, { passive: true });
   hero.addEventListener('touchend', function () { pointer.t = Date.now(); });
-  hero.addEventListener('click', function (e) {
-    if (e.target.closest('a, button')) return;
-    var r = c.getBoundingClientRect();
-    ripples.push({ x: e.clientX - r.left, y: e.clientY - r.top, r: 0 });
-    pts.forEach(function (p) {                        // tap or click: push nearby dots outward
-      var dx = p.x - (e.clientX - r.left), dy = p.y - (e.clientY - r.top), d = Math.hypot(dx, dy) || 1;
-      if (d < 160) { p.vx += dx / d * 2.2; p.vy += dy / d * 2.2; }
+  function burst(x, y, target) {                    // tap or click: ripple + push nearby dots outward
+    if (target && target.closest && target.closest('a, button')) return;
+    var r = c.getBoundingClientRect(), bx = x - r.left, by = y - r.top;
+    ripples.push({ x: bx, y: by, r: 0 });
+    pts.forEach(function (p) {
+      var dx = p.x - bx, dy = p.y - by, d = Math.hypot(dx, dy) || 1;
+      if (d < 170) { p.vx += dx / d * 2.4; p.vy += dy / d * 2.4; }
     });
-  });
+  }
+  hero.addEventListener('touchstart', function (e) { var t = e.touches[0]; burst(t.clientX, t.clientY, e.target); }, { passive: true });
+  hero.addEventListener('mousedown', function (e) { burst(e.clientX, e.clientY, e.target); });
   function draw() {
     var w = c.offsetWidth, h = c.offsetHeight, now = Date.now();
     ctx.clearRect(0, 0, w, h);
@@ -462,7 +474,12 @@
       var tt = now / 4000;
       pointer.x = w * (.5 + .38 * Math.sin(tt)); pointer.y = h * (.5 + .3 * Math.sin(tt * 1.7)); pointer.active = true;
     }
-    var reach = small() ? 120 : 150, link = small() ? 110 : 130;
+    var reach = small() ? 130 : 150, link = small() ? 115 : 130;
+    if (pointer.active && !reduce) {
+      var g = ctx.createRadialGradient(pointer.x, pointer.y, 0, pointer.x, pointer.y, reach * 1.3);
+      g.addColorStop(0, 'rgba(94,234,212,' + (small() ? .16 : .1) + ')'); g.addColorStop(1, 'rgba(94,234,212,0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(pointer.x, pointer.y, reach * 1.3, 0, 6.3); ctx.fill();
+    }
     for (var a = 0; a < pts.length; a++) {
       var p = pts[a];
       if (!reduce) {
@@ -481,7 +498,7 @@
       }
       for (var b = a + 1; b < pts.length; b++) {
         var q = pts[b], d = Math.hypot(p.x - q.x, p.y - q.y);
-        if (d < link) { ctx.strokeStyle = 'rgba(240,138,60,' + (1 - d / link) * .4 + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+        if (d < link) { ctx.strokeStyle = 'rgba(240,138,60,' + (1 - d / link) * (small() ? .55 : .4) + ')'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
       }
       if (pointer.active) {                            // lines from the pointer to nearby dots
         var md = Math.hypot(p.x - pointer.x, p.y - pointer.y);
@@ -489,7 +506,7 @@
       }
       var big = a % 5 === 0;
       ctx.fillStyle = big ? '#f08a3c' : '#5eead4';
-      ctx.beginPath(); ctx.arc(p.x, p.y, (big ? 2.6 : 1.7) * (small() ? 1.25 : 1), 0, 6.3); ctx.fill();
+      ctx.beginPath(); ctx.arc(p.x, p.y, (big ? 2.6 : 1.7) * (small() ? 1.45 : 1), 0, 6.3); ctx.fill();
     }
     ripples = ripples.filter(function (r) {
       r.r += 4; var o = 1 - r.r / 180; if (o <= 0) return false;
