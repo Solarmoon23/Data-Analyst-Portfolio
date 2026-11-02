@@ -1,0 +1,15 @@
+date,miles,destination,purpose,vehicle,entered_on
+2026-10-16,34.0,Pine & Paw Lodge,Turnover inspection + emergency repair,car,2026-10-17
+2026-10-02,17.0,Pine & Paw Lodge,Turnover inspection,Car/legacy,2026-10-17
+2026-10-09,17.0,Pine & Paw Lodge,Turnover inspection,Car/legacy,2026-10-17
+2026-10-08,8.8,Wild Yough Glamping,Cleaning,Car/legacy,2026-10-17
+2026-10-10,17.0,Client H,Delivery,Car/legacy,2026-10-17
+2026-10-16,17.0,Client H,Cleaning,Car/legacy,2026-10-17
+2026-10-19,9.2,Client G,Repair,Car/subaru,2026-10-19
+2026-10-19,17.0,,Emergency repair (arcade),Car/subaru,2026-10-19
+2026-10-23,30.0,Multiple stops,Turnover inspection + property check + cleaning,Car-subaru,2026-10-23
+2026-10-24,12.4,Bakery,Errand (pickup for client),Car/legacy,2026-10-24
+2026-10-24,4.3,Client I,Delivery,,2026-10-24
+2026-10-25,4.7,Wild Yough Glamping,Owner meeting,,2026-10-25
+2026-10-27,8.8,Wild Yough Glamping,Owner meeting,SUV/ toyota,2026-10-29
+2026-10-31,30.0,Client J,Property check,Car/legacy,2026-11-01

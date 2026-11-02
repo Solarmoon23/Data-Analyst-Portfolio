@@ -37,3 +37,6 @@ Google Sheet  →  summaries / charts
 3. Deploy the `/site` folder to Netlify.
 
 > ⚠️ The live Apps Script URL is not included — anyone with it could write to the sheet.
+
+## Analysis
+See the [Expense & Job-Costing Analysis](../expense-analysis) built on the data this log collects.

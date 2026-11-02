@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCLC Expense &amp; Job-Costing Analysis | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #0b1324; color: #fff; padding: 40px 20px 30px; text-align: center; border-bottom: 4px solid #f08a3c; }
+  header h1 { margin: 0; font-size: 30px; }
+  header p { margin: 10px auto 0; color: #cbd5e1; max-width: 680px; }
+  nav { background: #1e293b; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 960px; margin: auto; padding: 20px; }
+  h2 { border-bottom: 2px solid #f08a3c; padding-bottom: 4px; margin-top: 40px; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 20px 0; }
+  .stat { background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .stat b { display: block; font-size: 30px; color: #f08a3c; }
+  .stat span { font-size: 14px; color: #555; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); font-size: 15px; }
+  th, td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid #eee; }
+  th { background: #0b1324; color: #fff; font-weight: 600; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  figure { margin: 0; background: #fff; border-radius: 10px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  figure img { width: 100%; display: block; }
+  figcaption { font-size: 13px; color: #666; margin-top: 6px; }
+  ol li { margin-bottom: 8px; }
+  .files a { color: #c2410c; font-weight: 600; }
+  .note { background: #fff8e1; border-left: 4px solid #f08a3c; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #f08a3c; color: #111; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+  footer { background: #0b1324; color: #94a3b8; text-align: center; padding: 14px; margin-top: 40px; font-size: 14px; }
+  @media (max-width: 600px) { td:first-child { white-space: normal; } th, td { padding: 10px; font-size: 14px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>DCLC Expense &amp; Job-Costing Analysis</h1>
+  <p>Where does a small property-services business spend its money, and can its expense log show what each client costs to serve? Deep Creek Lake Concierge, Jan–Oct 2026.</p>
+</header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <p class="tags"><span>Python</span><span>pandas</span><span>matplotlib</span><span>SQL</span><span>Window functions</span><span>Data quality</span><span>Jupyter</span></p>
+
+  <div class="stats">
+    <div class="stat"><b>$6.5K</b><span>Purchases analyzed</span></div>
+    <div class="stat"><b>137</b><span>Purchases, plus 16 meals and 14 trips</span></div>
+    <div class="stat"><b>78%</b><span>Of spending with no client recorded</span></div>
+    <div class="stat"><b>10</b><span>Months of data (2026)</span></div>
+  </div>
+
+  <h2>Key findings</h2>
+  <table>
+    <tr><th>Question</th><th>Finding</th><th>Recommendation</th></tr>
+    <tr><td>Where the money goes</td><td>Equipment &amp; tools is 54% of purchases ($3,470). Just 10 one-off buys of $100+ (drone, pressure washer, ladder, trimmer, card terminal) make up 39% of the year.</td><td>Track big equipment separately from day-to-day supplies so routine costs are visible.</td></tr>
+    <tr><td>Seasonality</td><td>June–August is 60% of the year's purchases; July alone is $1,572.</td><td>Budget for a summer spike and buy landscaping and event supplies before June.</td></tr>
+    <tr><td>Events</td><td>Party and wedding decor is 37 items and $711, the most items of any category, and 76% of it has no client attached.</td><td>Treat event decorating as its own service line and price it to cover supplies.</td></tr>
+    <tr><td>Job costing</td><td>78% of purchase dollars ($5,034) have no client, so cost per client can't be calculated. Order-history imports from Amazon and Lowe's are almost all untagged.</td><td>Make <em>client</em> a required dropdown in the log form.</td></tr>
+    <tr><td>Trips</td><td>October: 14 trips, 227 miles, $173 in mileage value. Pine &amp; Paw Lodge is the top destination (85 miles, 37%). No trips were logged before October, though meals show client visits back to June.</td><td>Log every trip when it happens; earlier mileage is lost.</td></tr>
+    <tr><td>Data quality</td><td>93% of purchases are categorized just "Supplies"; vendors are spelled several ways; 23% have no receipt; one fuel fill-up; everything was entered Oct 17–28.</td><td>Use dropdowns for category and vendor, require a receipt photo, log fuel with the odometer each fill-up.</td></tr>
+  </table>
+
+  <h2>Charts</h2>
+  <div class="charts">
+    <figure><img src="spend_by_category.png" alt="Purchases by category"><figcaption>Purchases by category (rebuilt from item descriptions)</figcaption></figure>
+    <figure><img src="spend_by_month.png" alt="Monthly purchases"><figcaption>Monthly purchases, with one-off equipment separated</figcaption></figure>
+    <figure><img src="spend_by_client.png" alt="Purchases by client"><figcaption>Purchases by client (private clients anonymized)</figcaption></figure>
+    <figure><img src="client_coverage.png" alt="Share of purchase dollars with a client"><figcaption>Share of purchase dollars with a client recorded</figcaption></figure>
+  </div>
+
+  <h2>Method</h2>
+  <ol>
+    <li><strong>Data:</strong> the <a href="../vehicle-expense-log/">DCLC Vehicle &amp; Expense Log</a>, a phone form I built that writes to a Google Sheet, Jan 23 – Oct 31, 2026. Private client names were replaced with Client A, B, C…, and receipt links and addresses were removed.</li>
+    <li><strong>Data-quality check:</strong> profiled every field before analysis. Found the category field almost always "Supplies", inconsistent vendor spellings, missing clients and receipts, and that the whole log was back-filled in late October.</li>
+    <li><strong>Cleaning:</strong> standardized vendor and client names, rebuilt a useful spending category from each item description with keyword rules, flagged $100+ equipment, and reviewed repeated lines (kept as multi-quantity orders; one likely double entry noted).</li>
+    <li><strong>Analysis:</strong> spend by category, month and client in pandas; mileage value using the rate in effect on each trip date. The same questions are answered in SQL with window functions (SUM OVER, RANK, running totals, LAG).</li>
+  </ol>
+
+  <h2>Files</h2>
+  <ul class="files">
+    <li><a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/blob/main1/expense-analysis/expense_analysis.ipynb" target="_blank">Jupyter notebook (full analysis)</a></li>
+    <li><a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/blob/main1/expense-analysis/expense_analysis.sql" target="_blank">SQL queries</a></li>
+    <li><a href="purchases_clean.csv">Cleaned purchases dataset (CSV)</a></li>
+  </ul>
+
+  <p class="note">Limitations: about 10 months of data from one small business; purchases were entered after the fact from order history; trips cover October only, so mileage is a snapshot; categories are rebuilt with keyword rules and may misplace a few items.</p>
+
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer>&copy; 2026 Solar Shrestha-Greene</footer>
+</body>
+</html>

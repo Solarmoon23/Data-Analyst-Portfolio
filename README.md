@@ -6,6 +6,13 @@
 
 I turn messy operational data into clear decisions, with a focus on hospitality, vacation rentals and small-business operations.
 
+## 🔎 Data Analysis Projects
+
+| Project | Question | Stack |
+|---|---|---|
+| [Expense & Job-Costing Analysis](expense-analysis) | Where does a small property-services business spend its money, and can it see what each client costs? | Python, pandas, SQL |
+| [Facebook Engagement Analysis](facebook-engagement) | Which posts drive views and interaction for two hospitality pages? | Python, pandas, SQL |
+
 ## 📊 Data Visualization
 
 ### Airbnb Market Analysis (Tableau)
