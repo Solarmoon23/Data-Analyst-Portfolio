@@ -2,8 +2,7 @@
 
 A browser-based dashboard that consolidates vacation-rental bookings from multiple channels into a single view, built for **Pine & Paw Lodge** (luxury cabin, Deep Creek Lake, MD) and adapted for **Wild Yough Glamping** (5-hut glampground, Oakland, MD).
 
- ![App screenshot](pine-dash.png)
-<!-- Add a screenshot using sample/fake guest data only -->
+![App screenshot](pine-dash.png)
 
 ## The problem
 Bookings came in through several platforms (Airbnb, Booking.com, Hipcamp, direct), each with its own calendar. Owners had no single place to see occupancy, upcoming arrivals, or revenue, and tracking happened in a manually updated spreadsheet.

@@ -4,8 +4,6 @@ Website for **Deep Creek Lake Concierge (DCLC)**, a vacation-services and proper
 
 🔗 Live: [dclconcierge.com](https://dclconcierge.com)
 
-![Homepage screenshot](screenshots/home.png)
-
 ## My role
 Website maintenance, redesign and data — building custom sections, forms and integrations on top of WordPress.
 

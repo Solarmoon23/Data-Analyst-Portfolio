@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservation Management Dashboard | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #333; color: #fff; padding: 20px; text-align: center; }
+  header h1 { margin: 0; font-size: 28px; }
+  header p { margin: 6px 0 0; color: #ccc; }
+  nav { background: #444; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 900px; margin: auto; padding: 20px; }
+  .hero { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); display: block; background: #333; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  h2 { border-bottom: 2px solid #6b9f89; padding-bottom: 4px; margin-top: 32px; }
+  pre { background: #222; color: #e6e6e6; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+  .note { background: #fff8e1; border-left: 4px solid #f4a261; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #6b9f89; color: #fff; padding: 10px 18px; border-radius: 6px; text-decoration: none; }
+  footer { background: #333; color: #fff; text-align: center; padding: 10px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<header><h1>Reservation Management Dashboard</h1><p>One booking view for Pine &amp; Paw Lodge and Wild Yough Glamping</p></header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <img class="hero" src="pine-dash.png" alt="Reservation Management Dashboard screenshot">
+  <p class="tags" style="margin-top:16px"><span>HTML</span><span>JavaScript</span><span>iCal / ICS</span><span>CSS</span></p>
+  <h2>The problem</h2>
+  <p>Bookings came in through several platforms (Airbnb, Booking.com, Hipcamp and direct), each with its own calendar. The owners had no single place to see occupancy, upcoming arrivals or revenue, and tracking happened in a spreadsheet that had to be updated by hand.</p>
+  <h2>How it works</h2>
+<pre>Airbnb  Booking.com  Hipcamp  Direct
+   |         |          |        |
+   +----- iCal / ICS feeds ------+
+                 |
+                 v
+   Parse, clean, de-duplicate
+                 |
+                 v
+ Dashboard: timeline, occupancy, records</pre>
+  <h2>What I built</h2>
+  <ul>
+    <li><strong>Live iCal integration:</strong> pulls each channel's calendar feed and merges them into one reservation timeline.</li>
+    <li><strong>Occupancy view:</strong> booked vs. open nights per unit.</li>
+    <li><strong>Editable reservation records:</strong> add, edit and delete reservations and nightly rates in the page, synced for all viewers through a live database.</li>
+    <li><strong>Multi-property design:</strong> the Pine &amp; Paw version served as the reference model; the Wild Yough Glamping version extends it to five individual huts.</li>
+  </ul>
+  <h2>Skills demonstrated</h2>
+  <ul>
+    <li>Data integration from multiple external sources (iCal / ICS parsing)</li>
+    <li>Data cleaning and de-duplication across booking channels</li>
+    <li>Dashboard design for non-technical stakeholders</li>
+    <li>JavaScript, HTML, CSS</li>
+  </ul>
+  <p class="note">The live dashboard uses private calendar links and real guest data, so it is not linked here.</p>
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer><p>&copy; 2026 Solar Shrestha-Greene</p></footer>
+</body>
+</html>

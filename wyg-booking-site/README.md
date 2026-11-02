@@ -4,8 +4,6 @@ Direct-booking website for **Wild Yough Glamping**, a 5-hut glampground on 350 p
 
 🔗 Live: [dclconcierge.com/wyg](https://dclconcierge.com/wyg)
 
-![Site screenshot](screenshots/wyg-home.png)
-
 ## Goal
 Shift bookings from third-party platforms (which take fees and hide guest contact details) to direct reservations on the business's own site.
 
