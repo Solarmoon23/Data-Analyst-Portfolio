@@ -12,11 +12,8 @@ I turn messy operational data into clear decisions, with a focus on hospitality,
 |---|---|---|
 | [Expense & Job-Costing Analysis](expense-analysis) | Where does a small property-services business spend its money, and can it see what each client costs? | Python, pandas, SQL |
 | [Facebook Engagement Analysis](facebook-engagement) | Which posts drive views and interaction for two hospitality pages? | Python, pandas, SQL |
+| [Seattle Airbnb Market Dashboard](airbnb-dashboard) | How do size and location drive Airbnb prices in Seattle? | Tableau |
 
-## 📊 Data Visualization
-
-### Airbnb Market Analysis (Tableau)
-![Airbnb Tableau project](AirBnb%20Tableau%20project%20screenshot.png)
 
 ## 🏕️ Hospitality & Operations Projects
 

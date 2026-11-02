@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seattle Airbnb Market Dashboard | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #0b1324; color: #fff; padding: 40px 20px 30px; text-align: center; border-bottom: 4px solid #f08a3c; }
+  header h1 { margin: 0; font-size: 30px; }
+  header p { margin: 10px auto 0; color: #cbd5e1; max-width: 680px; }
+  nav { background: #1e293b; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 960px; margin: auto; padding: 20px; }
+  h2 { border-bottom: 2px solid #f08a3c; padding-bottom: 4px; margin-top: 40px; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 20px 0; }
+  .stat { background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .stat b { display: block; font-size: 30px; color: #f08a3c; }
+  .stat span { font-size: 14px; color: #555; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); font-size: 15px; }
+  th, td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid #eee; }
+  th { background: #0b1324; color: #fff; font-weight: 600; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  figure { margin: 0; background: #fff; border-radius: 10px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  figure img { width: 100%; display: block; }
+  figcaption { font-size: 13px; color: #666; margin-top: 6px; }
+  ol li { margin-bottom: 8px; }
+  .files a { color: #c2410c; font-weight: 600; }
+  .note { background: #fff8e1; border-left: 4px solid #f08a3c; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #f08a3c; color: #111; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+  footer { background: #0b1324; color: #94a3b8; text-align: center; padding: 14px; margin-top: 40px; font-size: 14px; }
+  @media (max-width: 600px) { td:first-child { white-space: normal; } th, td { padding: 10px; font-size: 14px; } }
+  .hero { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); display: block; margin-top: 10px; }
+  .caption { font-size: 13px; color: #666; margin-top: 6px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Seattle Airbnb Market Dashboard</h1>
+  <p>How do size and location drive Airbnb prices in Seattle? An interactive Tableau dashboard built on 2016 Seattle listing and calendar data.</p>
+</header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <p class="tags"><span>Tableau</span><span>Dashboard design</span><span>Geographic mapping</span><span>Data visualization</span></p>
+
+  <div class="stats">
+    <div class="stat"><b>2,580</b><span>Listings analyzed</span></div>
+    <div class="stat"><b>$96&ndash;$585</b><span>Average nightly price, 1 to 6 bedrooms</span></div>
+    <div class="stat"><b>70%</b><span>Of listings are 1-bedroom</span></div>
+    <div class="stat"><b>5</b><span>Views in one dashboard</span></div>
+  </div>
+
+  <img class="hero" src="dashboard.png" alt="Seattle Airbnb Tableau dashboard: price by ZIP code, revenue by week, price per bedroom, bedroom counts and a ZIP code map">
+  <p class="caption">The dashboard on Tableau Public.</p>
+
+  <h2>Key findings</h2>
+  <table>
+    <tr><th>Question</th><th>Finding</th><th>What it means</th></tr>
+    <tr><td>Size</td><td>Average nightly price rises with every bedroom: $96 (1) &rarr; $175 (2) &rarr; $250 (3) &rarr; $315 (4) &rarr; $450 (5) &rarr; $585 (6).</td><td>Bedroom count is the clearest price driver in the data.</td></tr>
+    <tr><td>Value per bedroom</td><td>Price per bedroom dips from $96 for 1-bedroom listings to $79 for 4-bedroom homes, then climbs back to $98 at 6 bedrooms.</td><td>3&ndash;4 bedroom homes are the best value per bedroom for groups.</td></tr>
+    <tr><td>Supply</td><td>1-bedroom listings are 70% of supply (1,811 of 2,580); only 80 listings (3%) have 4 or more bedrooms.</td><td>Large-group homes are a small niche of the market.</td></tr>
+    <tr><td>Location</td><td>ZIP 98119 (Queen Anne) has the highest average price at about $200 a night, roughly 3&times; the lowest-priced ZIP codes.</td><td>Location adds a clear premium; the map shows where it sits.</td></tr>
+    <tr><td>Season</td><td>The weekly total of calendar prices climbs from about $1.0M in early January to about $1.9M by late spring, then holds near that level for the rest of 2016.</td><td>Most of the year&#39;s potential revenue sits from spring onward.</td></tr>
+  </table>
+
+  <h2>What's on the dashboard</h2>
+  <table>
+    <tr><th>View</th><th>Chart type</th><th>What it shows</th></tr>
+    <tr><td>Price by Zipcode</td><td>Sorted bar chart</td><td>Average nightly price for each Seattle ZIP code, highest to lowest</td></tr>
+    <tr><td>Revenue for Year</td><td>Line chart by week</td><td>Weekly total of calendar prices across 2016</td></tr>
+    <tr><td>Average Price per Bedroom</td><td>Labeled bar chart</td><td>Average nightly price for 1 to 6 bedrooms</td></tr>
+    <tr><td>Distinct Count of Bedrooms</td><td>Text table</td><td>How many listings have each bedroom count</td></tr>
+    <tr><td>Price per Zipcode</td><td>Filled map</td><td>ZIP code areas on a Seattle map, colored to match the bar chart</td></tr>
+  </table>
+
+  <h2>Method</h2>
+  <ol>
+    <li><strong>Data:</strong> Seattle Airbnb open data for 2016: a listings table (price, ZIP code, bedrooms) and a calendar table (nightly prices by date).</li>
+    <li><strong>Build:</strong> one Tableau worksheet per question, using averages for price, a distinct count for listings and a weekly sum of calendar prices.</li>
+    <li><strong>Design:</strong> combined the five views into one dashboard, with matching ZIP code colors so the bar chart and the map read together.</li>
+    <li><strong>Publish:</strong> shared on Tableau Public, where viewers can hover over any chart for details.</li>
+  </ol>
+
+  <p class="note">Limitations: the "revenue" line sums listed calendar prices, so it shows potential revenue, not confirmed bookings. Averages can be pulled up by a few luxury listings, and the data covers Seattle in 2016 only.</p>
+
+  <h2>Why this matters for my work</h2>
+  <p>These are the same questions I work on for vacation rentals at Deep Creek Lake, MD: how unit size, location and season should shape nightly rates. See the <a href="../reservation-dashboard/">Reservation Management Dashboard</a>.</p>
+
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer>&copy; 2026 Solar Shrestha-Greene</footer>
+</body>
+</html>
