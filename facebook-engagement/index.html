@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Engagement Analysis | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #0b1324; color: #fff; padding: 40px 20px 30px; text-align: center; border-bottom: 4px solid #f08a3c; }
+  header h1 { margin: 0; font-size: 30px; }
+  header p { margin: 10px auto 0; color: #cbd5e1; max-width: 680px; }
+  nav { background: #1e293b; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 960px; margin: auto; padding: 20px; }
+  h2 { border-bottom: 2px solid #f08a3c; padding-bottom: 4px; margin-top: 40px; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 20px 0; }
+  .stat { background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .stat b { display: block; font-size: 30px; color: #f08a3c; }
+  .stat span { font-size: 14px; color: #555; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); font-size: 15px; }
+  th, td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid #eee; }
+  th { background: #0b1324; color: #fff; font-weight: 600; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  figure { margin: 0; background: #fff; border-radius: 10px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  figure img { width: 100%; display: block; }
+  figcaption { font-size: 13px; color: #666; margin-top: 6px; }
+  ol li { margin-bottom: 8px; }
+  .files a { color: #c2410c; font-weight: 600; }
+  .note { background: #fff8e1; border-left: 4px solid #f08a3c; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #f08a3c; color: #111; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+  footer { background: #0b1324; color: #94a3b8; text-align: center; padding: 14px; margin-top: 40px; font-size: 14px; }
+  @media (max-width: 600px) { td:first-child { white-space: normal; } th, td { padding: 10px; font-size: 14px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Facebook Engagement Analysis</h1>
+  <p>Which posts drive views and interaction for two Deep Creek Lake, MD hospitality pages: Deep Creek Lake Concierge and Pine &amp; Paw Lodge.</p>
+</header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <p class="tags"><span>Python</span><span>pandas</span><span>matplotlib</span><span>SQL</span><span>Window functions</span><span>Jupyter</span></p>
+
+  <div class="stats">
+    <div class="stat"><b>225</b><span>Posts exported</span></div>
+    <div class="stat"><b>169</b><span>Original posts analyzed</span></div>
+    <div class="stat"><b>52.7K</b><span>Total views</span></div>
+    <div class="stat"><b>10</b><span>Months of data (2026)</span></div>
+  </div>
+
+  <h2>Key findings</h2>
+  <table>
+    <tr><th>Question</th><th>Finding</th><th>Recommendation</th></tr>
+    <tr><td>Post type</td><td>Photos get the highest engagement (6.2% median vs 3.6% for videos), but videos reach more people (233 vs 150 median views).</td><td>Use photos for interaction, videos for reach.</td></tr>
+    <tr><td>Day</td><td>Friday posts get 7.0% engagement vs 3.2–4.5% on other days.</td><td>Schedule key promotions for Friday.</td></tr>
+    <tr><td>Time</td><td>Morning posts (6–11am ET) get 4.7% engagement vs about 3.3% in the afternoon and evening.</td><td>Keep posting around 9am.</td></tr>
+    <tr><td>Season</td><td>May–August is strongest (May peaks at 6.9%); February–March drop to about 1%.</td><td>Plan winter content and early-booking offers ahead of slow months.</td></tr>
+    <tr><td>Reshares</td><td>Posts shared from other pages get 45 median views vs 161 for original posts, with almost no interaction.</td><td>Post original content instead of reshares.</td></tr>
+  </table>
+
+  <h2>Charts</h2>
+  <div class="charts">
+    <figure><img src="engagement_by_post_type.png" alt="Median engagement rate by post type"><figcaption>Median engagement rate by post type</figcaption></figure>
+    <figure><img src="engagement_by_day.png" alt="Median engagement rate by day posted"><figcaption>Median engagement rate by day posted</figcaption></figure>
+    <figure><img src="engagement_by_time.png" alt="Median engagement rate by time posted"><figcaption>Median engagement rate by time posted (Eastern)</figcaption></figure>
+    <figure><img src="posts_vs_views_by_month.png" alt="Posts per month vs median views"><figcaption>Posts per month vs median views</figcaption></figure>
+  </div>
+
+  <h2>Method</h2>
+  <ol>
+    <li><strong>Data:</strong> Meta Business Suite content export, Jan 1 – Nov 1, 2026, one row per post.</li>
+    <li><strong>Cleaning:</strong> renamed columns, converted publish times from Pacific to Eastern, and added day, hour, time of day, month, season, caption length and call-to-action flags. Group cross-posts and reshares of other pages were excluded from comparisons.</li>
+    <li><strong>Metrics:</strong> engagement rate = (reactions + comments + shares) &divide; views; click rate = clicks &divide; views. Medians are used because views are highly skewed by a few viral posts.</li>
+    <li><strong>Analysis:</strong> compared post type, day, time and month in pandas, then answered the same questions in SQL, including window functions (RANK, running totals, LAG).</li>
+  </ol>
+
+  <h2>Files</h2>
+  <ul class="files">
+    <li><a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/blob/main1/facebook-engagement/facebook_engagement_analysis.ipynb" target="_blank">Jupyter notebook (full analysis)</a></li>
+    <li><a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/blob/main1/facebook-engagement/facebook_analysis.sql" target="_blank">SQL queries</a></li>
+    <li><a href="facebook_posts_clean.csv">Cleaned dataset (CSV)</a></li>
+  </ul>
+
+  <p class="note">Limitations: about 10 months of data from two small pages; Meta's export provides views but no separate reach metric; groups with fewer than 5 posts are not compared.</p>
+
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer>&copy; 2026 Solar Shrestha-Greene</footer>
+</body>
+</html>
