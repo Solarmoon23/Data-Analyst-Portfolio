@@ -35,6 +35,10 @@
   @media (max-width: 600px) { td:first-child { white-space: normal; } th, td { padding: 10px; font-size: 14px; } }
   .hero { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); display: block; margin-top: 10px; }
   .caption { font-size: 13px; color: #666; margin-top: 6px; }
+  .viz-wrap { width: min(1540px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); overflow-x: auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.06); margin-top: 14px; }
+  .viz-wrap iframe { display: block; border: 0; width: 100%; min-width: 1000px; height: 950px; }
+  .live { display: inline-block; background: #f08a3c; color: #111; padding: 9px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .hint { font-size: 14px; color: #555; }
 </style>
 </head>
 <body>
@@ -53,8 +57,12 @@
     <div class="stat"><b>5</b><span>Views in one dashboard</span></div>
   </div>
 
-  <img class="hero" src="dashboard.png" alt="Seattle Airbnb Tableau dashboard: price by ZIP code, revenue by week, price per bedroom, bedroom counts and a ZIP code map">
-  <p class="caption">The dashboard on Tableau Public.</p>
+  <h2>Interactive dashboard</h2>
+  <p><a class="live" href="https://public.tableau.com/app/profile/solar.shrestha/viz/AirBnBFullProject_17397558343190/Dashboard1" target="_blank" rel="noopener">Open full screen on Tableau Public &rarr;</a></p>
+  <p class="hint">Hover over any bar, ZIP code or point on the line for details.</p>
+  <div class="viz-wrap">
+    <iframe src="https://public.tableau.com/views/AirBnBFullProject_17397558343190/Dashboard1?:showVizHome=no&amp;:embed=true&amp;:toolbar=yes&amp;:tabs=no" title="Seattle Airbnb Market Dashboard (Tableau Public)" loading="lazy" allowfullscreen></iframe>
+  </div>
 
   <h2>Key findings</h2>
   <table>
@@ -81,7 +89,7 @@
     <li><strong>Data:</strong> Seattle Airbnb open data for 2016: a listings table (price, ZIP code, bedrooms) and a calendar table (nightly prices by date).</li>
     <li><strong>Build:</strong> one Tableau worksheet per question, using averages for price, a distinct count for listings and a weekly sum of calendar prices.</li>
     <li><strong>Design:</strong> combined the five views into one dashboard, with matching ZIP code colors so the bar chart and the map read together.</li>
-    <li><strong>Publish:</strong> shared on Tableau Public, where viewers can hover over any chart for details.</li>
+    <li><strong>Publish:</strong> shared on <a href="https://public.tableau.com/app/profile/solar.shrestha/viz/AirBnBFullProject_17397558343190/Dashboard1" target="_blank" rel="noopener">Tableau Public</a>, where viewers can hover over any chart for details.</li>
   </ol>
 
   <p class="note">Limitations: the "revenue" line sums listed calendar prices, so it shows potential revenue, not confirmed bookings. Averages can be pulled up by a few luxury listings, and the data covers Seattle in 2016 only.</p>

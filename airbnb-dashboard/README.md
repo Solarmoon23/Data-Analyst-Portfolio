@@ -2,6 +2,8 @@
 
 How do size and location drive Airbnb prices in Seattle? An interactive Tableau Public dashboard built on 2016 Seattle listing and calendar data.
 
+**Interactive dashboard:** [Tableau Public](https://public.tableau.com/app/profile/solar.shrestha/viz/AirBnBFullProject_17397558343190/Dashboard1)
+
 ![Dashboard](dashboard.png)
 
 ## Key findings
