@@ -1,0 +1,7 @@
+condition,national_median_ratio,national_median_rate,national_hospitals_reported
+COPD,0.9969,17.925,2323
+Heart attack (AMI),0.99945,13.27825,1736
+Heart bypass (CABG),0.99995,10.54405,878
+Heart failure,0.9983,19.3125,2621
+Hip/knee replacement,0.9916,5.4153,1447
+Pneumonia,0.9955,15.4479,2715

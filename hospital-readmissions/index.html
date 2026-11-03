@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hospital Readmissions: PA, WV &amp; MD | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #0b1324; color: #fff; padding: 40px 20px 30px; text-align: center; border-bottom: 4px solid #f08a3c; }
+  header h1 { margin: 0; font-size: 30px; }
+  header p { margin: 10px auto 0; color: #cbd5e1; max-width: 680px; }
+  nav { background: #1e293b; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 960px; margin: auto; padding: 20px; }
+  h2 { border-bottom: 2px solid #f08a3c; padding-bottom: 4px; margin-top: 40px; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin: 20px 0; }
+  .stat { background: #fff; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .stat b { display: block; font-size: 30px; color: #f08a3c; }
+  .stat span { font-size: 14px; color: #555; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); font-size: 15px; }
+  th, td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid #eee; }
+  th { background: #0b1324; color: #fff; font-weight: 600; }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  .charts { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+  figure { margin: 0; background: #fff; border-radius: 10px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  figure img { width: 100%; display: block; }
+  figcaption { font-size: 13px; color: #666; margin-top: 6px; }
+  ol li { margin-bottom: 8px; }
+  .files a { color: #c2410c; font-weight: 600; }
+  .note { background: #fff8e1; border-left: 4px solid #f08a3c; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #f08a3c; color: #111; padding: 10px 18px; border-radius: 6px; text-decoration: none; font-weight: 600; }
+  footer { background: #0b1324; color: #94a3b8; text-align: center; padding: 14px; margin-top: 40px; font-size: 14px; }
+  @media (max-width: 600px) { td:first-child { white-space: normal; } th, td { padding: 10px; font-size: 14px; } }
+  .viz-wrap { width: min(1540px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); overflow-x: auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,.06); margin-top: 14px; }
+  .viz-wrap iframe { display: block; border: 0; width: 1500px; height: 1500px; margin: 0 auto; }
+  .live { display: inline-block; background: #f08a3c; color: #111; padding: 9px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 15px; }
+  .hint { font-size: 14px; color: #555; }
+  @media (max-width: 700px) { .viz-wrap iframe { height: 1100px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Hospital Readmissions: PA, WV &amp; MD</h1>
+  <p>Which hospitals in Pennsylvania, West Virginia and Maryland send more Medicare patients back to the hospital within 30 days than expected, and for which conditions?</p>
+</header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <p class="tags"><span>Tableau</span><span>SQL</span><span>Python</span><span>pandas</span><span>Healthcare analytics</span><span>CMS data</span></p>
+
+  <div class="stats">
+    <div class="stat"><b>201</b><span>Hospitals in PA, WV and MD</span></div>
+    <div class="stat"><b>835</b><span>Hospital-condition results analyzed</span></div>
+    <div class="stat"><b>49%</b><span>Worse than expected (US: 48%)</span></div>
+    <div class="stat"><b>924</b><span>Readmissions above expected</span></div>
+  </div>
+
+  <h2>Interactive dashboard</h2>
+  <p><a class="live" href="https://public.tableau.com/app/profile/solar.shrestha/viz/HospitalReadmissionsPAWVMD/ReadmissionsDashboard" target="_blank" rel="noopener">Open full screen on Tableau Public &rarr;</a></p>
+  <p class="hint">Click a hospital on the map or in the ranking to see its results by condition. Use the Top N slider to show more or fewer hospitals in the ranking.</p>
+  <div class="viz-wrap">
+    <iframe src="https://public.tableau.com/views/HospitalReadmissionsPAWVMD/ReadmissionsDashboard?:showVizHome=no&amp;:embed=true&amp;:toolbar=yes&amp;:tabs=no" title="Hospital Readmissions dashboard: Pennsylvania, West Virginia and Maryland (Tableau Public)" loading="lazy" allowfullscreen></iframe>
+  </div>
+
+  <h2>Key findings</h2>
+  <table>
+    <tr><th>Question</th><th>Finding</th><th>Recommendation</th></tr>
+    <tr><td>States vs nation</td><td>West Virginia (54%) and Pennsylvania (51%) have more results worse than expected than the US (48%); Maryland is lower at 41%.</td><td>Focus readmission-reduction programs on PA and WV hospitals.</td></tr>
+    <tr><td>Conditions</td><td>In West Virginia, 62% of hospitals are worse than expected for heart failure and pneumonia. In Pennsylvania, heart bypass (59%), COPD (58%) and heart attack (57%) lead.</td><td>Target discharge planning and follow-up calls for these conditions, state by state.</td></tr>
+    <tr><td>Hospitals</td><td>Of 172 hospitals with 3+ results, 10 are worse than expected on every condition they report and 12 on none.</td><td>Study how the consistent performers handle discharges and share it across health systems.</td></tr>
+    <tr><td>Star ratings</td><td>The average ratio falls steadily from 1.028 at 1-star hospitals to 0.983 at 5-star hospitals (correlation &minus;0.29).</td><td>Readmissions track overall quality, so quality programs should include post-discharge follow-up.</td></tr>
+    <tr><td>Local</td><td>Garrett Regional Medical Center in Oakland, MD ranks 2nd of 172, better than expected on all 4 conditions it reports.</td><td>A small rural hospital can match large academic centers on readmissions.</td></tr>
+  </table>
+
+  <h2>Charts</h2>
+  <div class="charts">
+    <figure><img src="worse_by_state.png" alt="Share of results worse than expected by state"><figcaption>Share of results worse than expected, by state, against the US</figcaption></figure>
+    <figure><img src="condition_by_state.png" alt="Heat map of conditions by state"><figcaption>Share of hospitals worse than expected, by condition and state</figcaption></figure>
+    <figure><img src="best_worst_hospitals.png" alt="Best and worst hospitals"><figcaption>Best and worst hospitals, average ratio across conditions</figcaption></figure>
+    <figure><img src="ratio_by_star.png" alt="Average ratio by star rating"><figcaption>Average excess readmission ratio by CMS star rating</figcaption></figure>
+  </div>
+
+  <h2>Method</h2>
+  <ol>
+    <li><strong>Data:</strong> CMS Hospital Readmissions Reduction Program, FY 2026 (Medicare discharges Jul 2021 &ndash; Jun 2024; 18,330 rows nationally), joined to CMS Hospital General Information for city, county, ZIP code and star rating.</li>
+    <li><strong>Metric:</strong> the excess readmission ratio, predicted &divide; expected readmissions for each hospital and condition. Above 1.0 means more readmissions than a similar hospital with similar patients would have.</li>
+    <li><strong>Cleaning:</strong> filtered to PA, WV and MD; kept CMS's &ldquo;not reported&rdquo; results out of comparisons; standardized hospital names; added national medians per condition as a benchmark.</li>
+    <li><strong>Analysis:</strong> compared states, conditions and hospitals in pandas, ranked hospitals with 3+ results so one condition can't decide a rank, and answered the same questions in SQL with CTEs, joins and window functions (RANK, NTILE).</li>
+    <li><strong>Dashboard:</strong> built in Tableau and published to <a href="https://public.tableau.com/app/profile/solar.shrestha/viz/HospitalReadmissionsPAWVMD/ReadmissionsDashboard" target="_blank" rel="noopener">Tableau Public</a>, with a hospital map, a condition heat map, a ranking, star-rating comparison and a click-to-drill hospital detail panel.</li>
+  </ol>
+
+  <h2>Files</h2>
+  <ul class="files">
+    <li><a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/blob/main1/hospital-readmissions/hospital_readmissions_analysis.ipynb" target="_blank">Jupyter notebook (full analysis)</a></li>
+    <li><a href="https://github.com/Solarmoon23/Data-Analyst-Portfolio/blob/main1/hospital-readmissions/readmissions_analysis.sql" target="_blank">SQL queries</a></li>
+    <li><a href="readmissions_pa_wv_md.csv">Cleaned dataset (CSV)</a></li>
+  </ul>
+
+  <p class="note">Limitations: Medicare patients only. CMS exempts Maryland hospitals from readmission payment penalties under the state's own Medicare model, though their results are still published. Small hospitals often have too few cases to report. The hospital average weights each condition equally regardless of patient volume.</p>
+
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer>&copy; 2026 Solar Shrestha-Greene</footer>
+<script data-goatcounter="https://solarportfolio.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>

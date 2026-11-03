@@ -10,6 +10,7 @@ I turn messy operational data into clear decisions, with a focus on hospitality,
 
 | Project | Question | Stack |
 |---|---|---|
+| [Hospital Readmissions: PA, WV & MD](hospital-readmissions) | Which hospitals and conditions have more Medicare readmissions than expected? | Tableau, SQL, Python |
 | [Expense & Job-Costing Analysis](expense-analysis) | Where does a small property-services business spend its money, and can it see what each client costs? | Python, pandas, SQL |
 | [Facebook Engagement Analysis](facebook-engagement) | Which posts drive views and interaction for two hospitality pages? | Python, pandas, SQL |
 | [Seattle Airbnb Market Dashboard](airbnb-dashboard) | How do size and location drive Airbnb prices in Seattle? | Tableau |
