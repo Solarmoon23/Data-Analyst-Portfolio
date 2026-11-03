@@ -3,7 +3,7 @@
 Which hospitals in Pennsylvania, West Virginia and Maryland have more 30-day Medicare readmissions than expected, and for which conditions?
 
 **Data:** CMS Hospital Readmissions Reduction Program FY 2026 (discharges Jul 2021 – Jun 2024) joined to CMS Hospital General Information. 201 hospitals, 835 reported hospital-condition results.
-**Interactive dashboard:** [Tableau Public](https://public.tableau.com/app/profile/solar.shrestha/viz/HospitalReadmissionsPAWVMD/ReadmissionsDashboard)
+**Interactive dashboard:** [Tableau Public](https://public.tableau.com/app/profile/solar.shrestha/viz/Hospitalreadmission_17937195177900/ReadmissionsDashboard)
 **Tools:** Tableau, Python (pandas, matplotlib), SQL, Jupyter
 
 ## Key findings
