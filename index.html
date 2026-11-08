@@ -211,7 +211,7 @@
 
 <div class="wrap">
   <div class="stats reveal">
-    <div class="stat"><b data-count="9">0</b><span>Portfolio projects</span></div>
+    <div class="stat"><b id="project-count" data-count="9">0</b><span>Portfolio projects</span></div>
     <div class="stat"><b data-count="3">0</b><span>Certifications</span></div>
     <div class="stat"><b data-count="2">0</b><span>Degrees from SNHU</span></div>
     <div class="stat"><b data-count="6" data-suffix="+">0</b><span>Analytics tools</span></div>
@@ -546,5 +546,15 @@
 })();
 </script>
 <script data-goatcounter="https://solarportfolio.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  
+<script>
+  
+const projectCount = document.querySelectorAll('.grid .proj').length;
+const projectCounter = document.getElementById('project-count');
+
+if (projectCounter) {
+  projectCounter.dataset.count = projectCount;
+}
+</script>
 </body>
 </html>
