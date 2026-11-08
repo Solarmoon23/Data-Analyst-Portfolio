@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pine &amp; Paw Memories Digital Guestbook | Solar Shrestha-Greene</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 0; background: #f4f4f4; color: #222; line-height: 1.6; }
+  header { background: #333; color: #fff; padding: 20px; text-align: center; }
+  header h1 { margin: 0; font-size: 28px; }
+  header p { margin: 6px 0 0; color: #ccc; }
+  nav { background: #444; padding: 10px; text-align: center; }
+  nav a { color: #fff; text-decoration: none; margin: 0 15px; }
+  nav a:hover { text-decoration: underline; }
+  .container { max-width: 900px; margin: auto; padding: 20px; }
+  .hero { width: 100%; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,.15); display: block; background: #333; }
+  .tags span { display: inline-block; background: #333; color: #fff; font-size: 13px; padding: 4px 10px; border-radius: 14px; margin: 0 6px 6px 0; }
+  h2 { border-bottom: 2px solid #6b9f89; padding-bottom: 4px; margin-top: 32px; }
+  pre { background: #222; color: #e6e6e6; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 14px; }
+  .note { background: #fff8e1; border-left: 4px solid #f4a261; padding: 10px 14px; font-size: 14px; }
+  .back { display: inline-block; margin-top: 30px; background: #6b9f89; color: #fff; padding: 10px 18px; border-radius: 6px; text-decoration: none; }
+  footer { background: #333; color: #fff; text-align: center; padding: 10px; margin-top: 40px; }
+  table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06); font-size: 15px; }
+  th, td { padding: 11px 13px; text-align: left; vertical-align: top; border-bottom: 1px solid #eee; }
+  th { background: #333; color: #fff; font-weight: 600; }
+  td:first-child { font-weight: 600; }
+  td code, li code { background: #eef2f0; padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+  .live { display: inline-block; margin: 14px 10px 0 0; background: #333; color: #fff; padding: 9px 16px; border-radius: 6px; text-decoration: none; font-size: 15px; }
+  .live:hover { background: #6b9f89; }
+  .caption { font-size: 13px; color: #666; margin-top: 6px; }
+  @media (max-width: 600px) { th, td { padding: 9px; font-size: 14px; } table { display: block; overflow-x: auto; } }
+</style>
+</head>
+<body>
+<header><h1>Pine &amp; Paw Memories Digital Guestbook</h1><p>Guest data collection, moderation and public storytelling for a vacation rental in Deep Creek Lake, MD</p></header>
+<nav><a href="../index.html">Home</a><a href="../index.html#projects">Projects</a><a href="../index.html#contact">Contact</a></nav>
+<main class="container">
+  <img class="hero" src="screenshots/guestbook-cover.png" alt="Pine and Paw Memories public guestbook cover" onerror="this.onerror=null;this.style.display='none';document.getElementById('screenshot-note').hidden=false">
+  <p id="screenshot-note" class="note" hidden>Project screenshot coming soon. Explore the live public showcase using the link below.</p>
+  <a class="live" href="https://pine-paw-memories.dclcmanage.workers.dev/showcase" target="_blank" rel="noopener noreferrer">View the public guestbook &rarr;</a>
+  <p class="tags" style="margin-top:16px"><span>Cloudflare Workers</span><span>Cloudflare D1 (SQLite)</span><span>SQL</span><span>JavaScript</span><span>HTML</span><span>CSS</span></p>
+  <h2>The goal</h2>
+  <p>Replace a traditional paper guestbook with a digital experience that captures guest stories and photographs, supports owner review, and displays approved memories to prospective guests. The structured records also create a foundation for future operational reporting.</p>
+  <h2>What I built and how</h2>
+  <table>
+    <tr><th>Feature</th><th>Status</th><th>What it does</th><th>Built with</th></tr>
+    <tr><td>Guest submission form</td><td>Live</td><td>Collects a guest's story, optional name and stay date.</td><td>HTML, JavaScript, Cloudflare Workers</td></tr>
+    <tr><td>Photo submissions</td><td>Live</td><td>Allows guests to add photographs to their memories.</td><td>JavaScript, database-backed application</td></tr>
+    <tr><td>Owner review dashboard</td><td>Live</td><td>Lets the owner review and approve or reject submitted content.</td><td>Cloudflare Workers, D1, SQL</td></tr>
+    <tr><td>Public showcase</td><td>Live</td><td>Displays approved stories through an interactive notebook interface.</td><td>HTML, CSS, JavaScript</td></tr>
+    <tr><td>QR-code access</td><td>Available</td><td>Provides a direct link guests can scan to open the guestbook on a phone.</td><td>QR code, web URL</td></tr>
+    <tr><td>Guest engagement reporting</td><td>Planned</td><td>Analyze submission counts, activity over time and review outcomes using aggregate data.</td><td>SQL, Python or BI dashboard</td></tr>
+  </table>
+  <h2>How the data workflow works</h2>
+  <pre>Guest submits a memory and optional photos
+                  |
+                  v
+      Application validates the submission
+                  |
+                  v
+         Store structured records in D1
+                  |
+                  v
+        Owner reviews the submission
+                  |
+          +-------+-------+
+          |               |
+       Approved        Not approved
+          |               |
+          v               v
+    Public showcase   Hidden from showcase</pre>
+  <h2>SQL example: monthly submission counts</h2>
+  <p>The query below illustrates a possible analytics report. It is a <strong>conceptual example</strong>, not a verified query against the production database schema.</p>
+  <pre>-- Example schema only; confirm actual table and column names
+SELECT strftime('%Y-%m', created_at) AS month,
+       COUNT(*) AS submissions
+FROM memories
+GROUP BY strftime('%Y-%m', created_at)
+ORDER BY month;</pre>
+  <h2>Skills demonstrated</h2>
+  <ul>
+    <li>Designing a database-backed workflow for guest-generated records</li>
+    <li>Using SQL and relational data to support review and publication decisions</li>
+    <li>Separating private submissions from approved public content</li>
+    <li>Planning operational KPIs and aggregate reporting for a real hospitality business</li>
+    <li>Building a responsive, mobile-friendly web interface</li>
+  </ul>
+  <p class="note">Privacy: No private guest records, passwords, tokens or production database exports are included in this portfolio. The public demo shows owner-approved content only.</p>
+  <a class="back" href="../index.html#projects">&larr; Back to all projects</a>
+</main>
+<footer><p>&copy; 2026 Solar Shrestha-Greene</p></footer>
+<script data-goatcounter="https://solarportfolio.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</body>
+</html>
